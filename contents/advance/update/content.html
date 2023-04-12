@@ -1,0 +1,121 @@
+<h1>更新</h1>
+<section>
+  <p>
+    更新，WPA 使用update方法，显式的更新绑定
+  </p>
+  <p>显式更新的好处就是可以精细控制，可以也搭配一下observing的组件实现自动更新</p>
+  <p>
+    update的几种说明
+  <ul>
+
+    <li>
+      update(ignoreAttrs, updateSelf)
+
+    </li>
+    <li>
+      forceUpdate = update(true,updateSelf)
+    </li>
+    <li>
+      updateSelf= update(ignoreAttrs, true)
+    </li>
+
+
+    <li>
+      updateProps ，更新属性后 forceUpdate
+    </li>
+  </ul>
+
+  wpa增加的更新方法
+  <ul>
+    <li>
+      update$Props ,使用props属性绑定对象的时候需要用这个方法更新
+    </li>
+    <li>
+      lazyUpdate ，使用throttle，设定13毫秒，调用update，
+    </li>
+    <li>
+      updateTargets，对指定范围的组件调用更新方法
+    </li>
+  </ul>
+  </p>
+</section>
+<h2>DEMO</h2>
+<h3>lazyUpdate</h3>
+<section>
+  <pre><code class="language-javascript">
+     
+let count = 0;
+define(
+  &quot;a-tag&quot;,
+  class extends Component {
+    static css = css; //css 文件
+    updated() {
+      console.log(&quot;updated&quot;);
+    }
+    render() {
+      return (
+        &lt;h1&gt;
+          {count}
+          &lt;button
+            onClick={(evt) =&gt; {
+              for (let i = 0; i &lt; 10; i++) {
+                count++;
+                this.lazyUpdate();
+              }
+            }}
+          &gt;
+            lazyUpdate
+          &lt;/button&gt;
+        &lt;/h1&gt;
+      );
+    }
+  }
+);
+render(
+  &lt;fieldset&gt;
+    &lt;legend&gt;lazyUpdate &lt;/legend&gt;
+    &lt;a-tag&gt;&lt;/a-tag&gt;
+  &lt;/fieldset&gt;,
+  &quot;body&quot;
+);
+</code></pre>
+  <h3>updateTargets</h3>
+  <section>
+    <pre><code class="language-javascript">
+
+      define(
+        &quot;b-tag&quot;,
+        class extends Component {
+          render() {
+            return (
+              &lt;div&gt;
+                &lt;a-tag&gt;&lt;/a-tag&gt;
+                &lt;div&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      this.updateTargets(&quot;.some-tag&quot;);
+                    }}
+                  &gt;
+                    update .some-tag
+                  &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div className=&quot;some-tag&quot;&gt;
+                  &lt;a-tag&gt;&lt;/a-tag&gt;
+                  &lt;a-tag&gt;&lt;/a-tag&gt;
+                  &lt;a-tag&gt;&lt;/a-tag&gt;
+                  &lt;a-tag&gt;&lt;/a-tag&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            );
+          }
+        }
+      );
+      render(
+        &lt;fieldset&gt;
+          &lt;legend&gt;updateTargets &lt;/legend&gt;
+          &lt;b-tag&gt;&lt;/b-tag&gt;
+        &lt;/fieldset&gt;,
+        &quot;body&quot;
+      );
+        
+</code></pre>

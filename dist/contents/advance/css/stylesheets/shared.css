@@ -1,0 +1,4 @@
+h1::after {
+    content: '[来自 shared.css]';
+    color: blue;
+}

@@ -1,0 +1,95 @@
+[
+    {
+        "key": "home",
+        "label": "首页"
+    },
+    {
+        "key": "basic",
+        "folder": true,
+        "label": "基础",
+        "children": [
+            {
+                "key": "what-is-component",
+                "label": "组件"
+            },
+            {
+                "key": "vnode"
+            },
+            {
+                "key": "function-node",
+                "label": "函数节点"
+            },
+            {
+                "key": "function-tag",
+                "label": "函数标签"
+            },
+            {
+                "key": "web-component",
+                "label": "WebComponents"
+            },
+            {
+                "key": "props",
+                "label": "props"
+            }
+        ]
+    },
+    {
+        "key": "advance",
+        "label": "进阶",
+        "folder": true,
+        "children": [
+            {
+                "key": "css",
+                "children": [
+                    {
+                        "key": "cssss"
+                    },
+                    {
+                        "key": "stylesheets"
+                    },
+                    {
+                        "key": "theme"
+                    }
+                ]
+            },
+            {
+                "key": "update",
+                "label": "更新"
+            },
+            {
+                "key": "binding",
+                "label": "绑定"
+            },
+            {
+                "key": "observing"
+            },
+            {
+                "key": "$"
+            },
+            {
+                "key": "api"
+            },
+            {
+                "key": "async",
+                "label": "异步"
+            },
+            {
+                "key": "micro-frontend",
+                "label": "微前端"
+            }
+        ]
+    },
+    {
+        "key": "ui",
+        "label": "UI",
+        "folder": true,
+        "children": [
+            {
+                "key": "select"
+            },
+            {
+                "key": "table"
+            }
+        ]
+    }
+]

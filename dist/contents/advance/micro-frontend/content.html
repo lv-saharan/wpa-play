@@ -1,0 +1,110 @@
+<h1>micro frontend</h1>
+<section>
+  <p>
+    web components技术提供一种非常友好的微前端实现方式。
+  </p>
+  <p>
+    可以将的ui组件打包成web components提供给整个微前端框架使用，
+    同时也可以把业务功能打包成独立web component，提供对外的业务逻辑调用。
+  </p>
+  <h2>DEMO</h2>
+  <h3>导入定义</h3>
+  <section>
+    <pre><code class="language-javascript">
+      import { h, render, Component, define, html } from "http://wpa.flatweb.net/wpa/latest/wpa.js";
+
+      export default class extends Component {
+          /**
+           * 提供的add方法
+           * @param {*} a 
+           * @param {*} b 
+           * @returns 
+           */
+          add(a, b) {
+              this.paramA = a;
+              this.paramB = b;
+              this.update()
+              return a + b
+          }
+      
+          render() {
+              return html`<div>
+                  <ul>
+                      <li>paramA:${this.paramA}</li>
+                      <li>paramB:${this.paramB}</li>
+                      <li>result:${this.paramB + this.paramA}</li>
+                  </ul>
+              </div>`
+          }
+      }
+
+
+      
+        
+</code></pre>
+    <h3>注册组件</h3>
+
+    <pre><code class="language-javascript">
+
+  import componentA from "./talks/advance/micro-frontend/component-a.js";
+  import componentB from "./talks/advance/micro-frontend/component-b.js";
+  
+  define("c-a", componentA);
+  define("c-b", componentB); 
+    
+</code></pre>
+  </section>
+
+
+  <h3>使用组件</h3>
+
+  <pre><code class="language-javascript">
+
+  define(
+    &quot;app-main&quot;,
+    class extends Component {
+      render() {
+        return (
+          &lt;&gt;
+            &lt;c-b id=&quot;cb&quot;&gt;&lt;/c-b&gt;
+            &lt;c-a id=&quot;ca&quot;&gt;&lt;/c-a&gt;
+            &lt;button
+              onClick={(evt) =&gt; {
+                const { paramA, paramB } = this.$(&quot;#cb&quot;);
+                this.$(&quot;#ca&quot;).add(paramA, paramB);
+              }}
+            &gt;
+              calc
+            &lt;/button&gt;
+            &lt;hr&gt;&lt;/hr&gt;
+            &lt;button
+              onClick={async (evt) =&gt; {
+                const { default: component } = await import(
+                  &quot;./talks/advance/micro-frontend/component-c.js&quot;
+                );
+                this.remoteComponent = component;
+                this.update();
+              }}
+            &gt;
+              load remote component{&quot; &quot;}
+            &lt;/button&gt;
+            {this.remoteComponent}
+          &lt;/&gt;
+        );
+      }
+    }
+  );
+  render(
+    &lt;fieldset&gt;
+      &lt;legend&gt;微前端&lt;/legend&gt;
+      &lt;app-main /&gt;
+    &lt;/fieldset&gt;,
+    &quot;body&quot;
+  );
+  
+    
+</code></pre>
+</section>
+<p>
+  导入组件的使用可以有三种基本模式：导入组件的定义，由父应用注册组件；或者在组件定义中直接注册全局的组件名称；或者把完整的业务实现后的组件整个导入。
+</p>

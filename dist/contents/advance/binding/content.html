@@ -1,0 +1,126 @@
+<h1>绑定</h1>
+<section>
+  <p>
+    WPA使用jsx进行绑定，对于表单字段可以使用wpa-bindings插件绑定
+  </p>
+
+  <h2>DEMO</h2>
+  <section>
+    <pre><code class="language-javascript">
+    
+define(
+  &quot;app-main&quot;,
+  class extends Component {
+    static css = `
+    div{
+      line-height: 1.5;
+      margin: .6rem;
+    }
+    div span{
+      display:inline-block;
+      margin-right:.2rem;
+      width:10rem;
+    }
+    button{
+      padding:.5rem;
+      margin:.3rem;
+    }
+    `;
+    data = {
+      name: &quot;lv-saharan&quot;,
+      gender: &quot;male&quot;,
+      likes: [&quot;tv&quot;, &quot;music&quot;, &quot;reading&quot;],
+      get likesCount() {
+        return this.likes.length;
+      },
+
+      some: {
+        prop1: 123,
+        prop2: true,
+      },
+    };
+    //指定绑定的范围
+    get bindingScope() {
+      return this.data;
+    }
+    showLikes = true;
+    render() {
+      return (
+        &lt;fieldset&gt;
+          &lt;legend&gt;form binding&lt;/legend&gt;
+          &lt;div&gt;
+            &lt;span&gt;name:&lt;/span&gt;
+            &lt;input o-model=&quot;name&quot; style=&quot;width:50rem;&quot;&gt;&lt;/input&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;span&gt;gender:&lt;/span&gt;
+            &lt;input
+              o-model=&quot;gender&quot;
+              type=&quot;radio&quot;
+              value=&quot;male&quot;
+              name=&quot;gender&quot;
+            &gt;&lt;/input&gt;
+            male
+            &lt;input
+              o-model=&quot;gender&quot;
+              type=&quot;radio&quot;
+              value=&quot;female&quot;
+              name=&quot;gender&quot;
+            &gt;&lt;/input&gt;
+            female
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;span&gt;likes:&lt;/span&gt;
+
+            {[&quot;tv&quot;, &quot;game&quot;, &quot;reading&quot;, &quot;music&quot;, &quot;others&quot;].map((l) =&gt; (
+              &lt;label&gt;
+                &lt;input
+                  o-model=&quot;likes&quot;
+                  type=&quot;checkbox&quot;
+                  value={l}
+                  onChange={(evt) =&gt; {
+                    updateBindings();
+                  }}
+                &gt;&lt;/input&gt;
+                {l}
+              &lt;/label&gt;
+            ))}
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;span&gt;likes count&lt;/span&gt;
+            &lt;select o-model=&quot;likesCount&quot; disabled&gt;
+              &lt;option&gt;1&lt;/option&gt;
+              &lt;option&gt;2&lt;/option&gt;
+              &lt;option&gt;3&lt;/option&gt;
+              &lt;option&gt;4&lt;/option&gt;
+              &lt;option&gt;5&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;span&gt;some&lt;/span&gt;
+            prop1:&lt;input type=&quot;number&quot; o-model=&quot;some.prop1&quot;&gt;&lt;/input&gt;  prop2:
+            &lt;input type=&quot;checkbox&quot; o-model=&quot;some.prop2&quot;&gt;&lt;/input&gt;
+          &lt;/div&gt;
+          &lt;button
+            onClick={(evt) =&gt; {
+              this.data.name = &quot;sa&quot;;
+              this.updateBindings();
+            }}
+          &gt;
+            set name to sa and updateBindings
+          &lt;/button&gt;
+
+          &lt;button
+            onClick={(evt) =&gt; {
+              alert(JSON.stringify(this.data));
+            }}
+          &gt;
+            show data
+          &lt;/button&gt;
+        &lt;/fieldset&gt;
+      );
+    }
+  }
+);
+render(&lt;app-main /&gt;, &quot;body&quot;);
+</code></pre>

@@ -1,0 +1,54 @@
+<h1>table</h1>
+<p>
+  wp-table 组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+    
+    const rows   = Array.from({ length: 20 }).map((v, index) =&gt; {
+      return {
+        id: index,
+        name:
+          index == 10 ? (
+            &lt;b style={{ color: &quot;red&quot; }}&gt;{&quot;user-&quot; + index}&lt;/b&gt;
+          ) : (
+            &quot;user-&quot; + index
+          ),
+      };
+    });
+    const columns = [
+      {
+        type: &quot;checkbox&quot;,
+        field: &quot;id&quot;,
+        checked: [1, 2, 3],
+      },
+      {
+        type: &quot;index&quot;,
+        title: &quot;序号&quot;,
+        style: {
+          width: &quot;2em&quot;,
+          color: &quot;blue&quot;,
+        },
+        titleStyle: {
+          color: &quot;red&quot;,
+          &quot;white-space&quot;: &quot;nowrap&quot;,
+        },
+      },
+      {
+        field: &quot;id&quot;,
+      },
+      { field: &quot;name&quot;, title: &quot;姓名&quot; },
+    ];
+    render(&lt;wp-table class=&quot;table-hover&quot; columns={columns} rows={rows} /&gt;, &quot;body&quot;);
+    
+  </code></pre>
+
+  <div class="demo">
+    <wp-table props="store.content" class="table table-hover"></wp-table>
+  </div>
+</section>

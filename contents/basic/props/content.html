@@ -1,0 +1,127 @@
+<h1>props</h1>
+<section>
+  <p>
+    props,这里只讨论一个缺陷
+  </p>
+</section>
+
+<h2>缺陷</h2>
+
+<section>
+  <p>
+    WPA提供了update、updateSelf、forceUpdate方法用来更新组件。
+  </p>
+  <p>
+    更新过程会将vnode重新生成，与之绑定的属性会设置成初始绑定值。
+  </p>
+  <p>
+    初始的绑定值可以是变量，可以通过组件的事件回调进行修改，但这样该我们的代码增加了很多额外工作
+  </p>
+</section>
+
+<h3>示例</h3>
+
+<section>
+
+  <pre><code class="language-javascript">   
+define(
+  "a-child",
+  class AChild extends WeElement {
+    static defaultProps = {
+      count: 0,
+    };
+    static propTypes = {
+      count: Number,
+    };
+    render(props) {
+      return (
+        &lt;&gt;
+          count is :{props.count}
+          &lt;button
+            onClick={(evt) =&gt; {
+              //这里会有不符合预期的结果
+              this.updateProps({ count: props.count + 1 });
+            }}
+          &gt;
+            +
+          &lt;/button&gt;
+        &lt;/&gt;
+      );
+    }
+  }
+);
+
+define(
+  "a-tag",
+  class extends Component {
+    render() {
+      return (
+        &lt;&gt;
+          &lt;a-child count="100"&gt;&lt;/a-child&gt;
+          &lt;button
+            onClick={(evt) =&gt; {
+              //虽然只更新自己，但是相关的子节点也会更新props，
+              //默认情况下receiveProps不返回false 子控件就会更新
+              this.updateSelf();
+            }}
+          &gt;
+            update
+          &lt;/button&gt;
+        &lt;/&gt;
+      );
+    }
+  }
+);
+
+render(&lt;a-tag&gt;&lt;/a-tag&gt;, "body");
+   </code></pre>
+  <p>
+    点击几下“+”后，在点击 update按钮，再次点击 “+”号产生非预期结果。
+  </p>
+</section>
+
+
+<h3>$props</h3>
+
+<section>
+<p>
+  $props 提供一种可选的方案，可以通 &lt;tag props={object} /&lg;的模式绑定一个属性对象，实现双向绑定。
+  不绑定props属性是 $props 等同 props， 
+ </p>
+  <pre><code class="language-javascript">   
+    define(
+      &quot;b-child&quot;,
+      class extends Component {
+        static defaultProps = {
+          count: 0,
+        };
+        static propTypes = {
+          count: Number,
+        };
+        render() {
+          return (
+            &lt;div&gt;
+              B count is :{this.$props.count}
+              &lt;button
+                onClick={(evt) =&gt; {
+                
+                  this.update$Props({ count: this.$props.count + 1 });
+                }}
+              &gt;
+                +
+              &lt;/button&gt;
+            &lt;/div&gt;
+          );
+        }
+      }
+    );
+
+    //使用 props属性绑定一个对象，可以在组件和父组件之间传递值的修改
+    &lt;b-child props={this.childProps}&gt;&lt;/b-child&gt;
+
+   </code></pre>
+  <p>
+    点击几下“+”后，在点击 update按钮，再次点击 “+”号产生预期结果。
+
+  </p>
+</section>

@@ -1,0 +1,3 @@
+h1 {
+    color:var(--wp-h1-color,red);
+}

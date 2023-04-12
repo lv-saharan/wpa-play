@@ -1,0 +1,101 @@
+<h1>css</h1>
+<section>
+  <p>
+    css系统总有几个问题需要解决
+  <ul>
+    <li>影响的范围（scope）：web components天然优势，样式可以附加在shadow-root上，实现隔离。不用担心伤害了别的组件（元素id命名也是互相隔离的）。</li>
+    <li>共用性：web components 间是相对独立的，里面的样式文件不能互相影响，但是adoptedStyleSheets可以使用共享的CSSStyleSheet，实现样式的共享</li>
+    <li>主题：相对其他模式 web components的主题实现会复杂一些，但是实现后有会强大很多。通常通过定义css变量实现主题，使用:part,:theme目前基本不可行。</li>
+  </ul>
+  </p>
+  <p>
+    WPA的CSS系统可以实现父级到子控件的样式注入，支持同类型组件的样式共享，一定程度的主题功能。
+  </p>
+  <p>
+    web components WPA 关于 <a href="https://github.com/Tencent/wpa#useful-resources"> web组件的相关资料</a>有一些关于web 组件样式的资料
+  </p>
+
+
+</section>
+<h2>WPA 组件样式构成</h2>
+<dl>
+  <div>
+    <dt>static css</dt>
+    <dd>输入：数组、导入、字符串</dd>
+    <dd>所有同类型元素共享一个CSSStyleSheet 数组，不需要style标签</dd>
+  </div>
+  <div>
+    <dt>css</dt>
+    <dd>输入：字符串，函数</dd>
+    <dd>可以在每个组件实例中控制返回的样式，现实组件的个性化样式</dd>
+  </div>
+  <div>
+    <dt>props css</dt>
+    <dd>输入：字符串</dd>
+    <dd>附件组件通过该属性注入，从而可以实现样式的个性化控制</dd>
+  </div>
+  <div>
+    <dt>CSS Variables</dt>
+    <dd>通过CSS预设的变量，进行变量值覆盖，从而实现样式控制</dd>
+  </div>
+</dl>
+
+
+<h2>wpa 组件样式扩展</h2>
+<p>wpa把样式也理解为一种组件，使用CSSStyleSheet可以实现这一部分的公用化</p>
+<dl>
+  <div>
+    <dt>static css</dt>
+    <dd>输入：数组、导入、字符串、CSSStyleSheet、函数、复杂嵌套的结构</dd>
+    <dd>所有同类型元素共享一个CSSStyleSheet 数组，不需要style标签</dd>
+    <dd>函数的引入可以实现样式的懒加载,从而在组件开发中做到按需加载！</dd>
+
+  </div>
+  <div>
+    <dt>css</dt>
+    <dd>输入：数组、导入、字符串、函数、复杂嵌套的结构</dd>
+    <dd>与WPA相比 取消了style标签的使用，会把所有的css计算合并成样式字符串</dd>
+  </div>
+
+  <div>
+    <dt>cssss</dt>
+    <dd>与static css一致,没有直接覆盖css属性是为了加入WPA的组件，cssss实际上可以使用CSSStyleSheet，实现一下编译好的样式组件。</dd>
+  </div>
+  <div>
+    <dt>stylesheets</dt>
+    <dd>输入：数组、导入、字符串、函数、复杂嵌套的结构</dd>
+    <dd>使用link标签导入样式，在使用外部样式组件的时候有一定用处。</dd>
+  </div>
+  <div>
+    <dt>props stylesheets</dt>
+    <dd>与stylesheets使用一致</dd>
+  </div>
+
+  <div>
+    <dt>props css</dt>
+    <dd>与WPA一致，但是取消了style标签的使用</dd>
+  </div>
+
+  <div>
+    <dt>props cssss</dt>
+    <dd>与static css一致,没有直接覆盖css属性是为了加入WPA的组件，cssss实际上可以使用CSSStyleSheet，实现一下编译好的样式组件。</dd>
+  </div>
+
+  <div>
+    <dt>props theme-css</dt>
+    <dd>输入：字符串</dd>
+    <dd>设置的组件，以及组件的子组件可以共享该样式设置</dd>
+
+  </div>
+
+  <div>
+    <dt>setTheme</dt>
+    <dd>输入：字符串</dd>
+    <dd>通过导入该方法可以设置影响所有wpa组件的样式，样式可以穿过所有层级</dd>
+
+  </div>
+  <div>
+    <dt>CSS Variables</dt>
+    <dd>与WPA一致</dd>
+  </div>
+</dl>

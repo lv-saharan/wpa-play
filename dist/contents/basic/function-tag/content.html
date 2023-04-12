@@ -1,0 +1,84 @@
+<h1>Function VNODE TAG</h1>
+<section>
+    <p>
+        函数标签！可以类别其他前端框架。
+    </p>
+</section>
+
+<h2>简单标签</h2>
+
+<section>
+    <p>
+        实现一个简单的标签
+    </p>
+    <pre><code class="language-javascript">   
+        function AComponent() {
+            return &lt;h1&gt;这是一个函数标签&lt;/h1&gt;;
+          }
+          
+          render(&lt;AComponent /&gt;, "body");
+   </code></pre>
+    <p>实际上会构造一个VNODE</p>
+    <pre><code class="language-javascript">   
+     vnode={
+        nodeName:ref to AComponent,
+        attributes,
+        children
+     }
+</code></pre>
+</section>
+
+<h2>独立逻辑的标签</h2>
+
+<section>
+    <p>
+        函数标签也可以拥有自己的逻辑和更新能力。
+    </p>
+    <p>
+        props作为第一个参数把标签的属性传入。
+
+    </p>
+    <p>
+        {update,vnode,children}作为第二个参数传入。
+        vnode是当前函数被h函数生成的对象，一个vnode 包含 {nodeName,attributes ...}
+    </p>
+    <p>
+        可以把vnode作为上下文中对象使用
+    </p>
+    <pre><code class="language-javascript">   
+        //带逻辑的标签
+        function BComponent(props, { update, vnode, children }) {
+          let times = vnode.times ?? 0;
+          return (
+            &lt;h1&gt;
+              这是一个函数标签,hello {props.name} !,
+              &lt;button
+                onClick={(e) =&gt; {
+                  vnode.times = times + 1;
+                  console.log(vnode.times);
+                  update();
+                }}
+              &gt;
+                click {times} times
+              &lt;/button&gt;
+              {children}
+            &lt;/h1&gt;
+          );
+        }
+        
+        render(&lt;BComponent name="saharan" /&gt;, "body");
+        
+        render(&lt;BComponent name="tom" /&gt;, "body");
+        
+        render(
+          &lt;BComponent name="jerry"&gt;
+            &lt;div&gt;a child&lt;/div&gt;
+          &lt;/BComponent&gt;,
+          "body"
+        );
+        
+   </code></pre>
+    <p>
+        children也会被注入，函数标签也可以对children进行操作
+    </p>
+</section>
