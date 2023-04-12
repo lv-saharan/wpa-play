@@ -1,0 +1,68 @@
+<h1>wpa</h1>
+
+<section>
+    <p>
+        WPA 是一个简单易学的框架，继承腾讯OMI框架！
+    </p>
+    <p>
+        WPA 主要特点是生命周期都支持异步模式
+    </p>
+    <p>
+        WPA 可以实现完善的微前端框架，实现前端功能的服务化
+    </p>
+    <p>
+        WPA UI 实现了Bootstrap的WebComponent
+    </p>
+
+    <pre><code class="language-javascript">      // wpa Component
+        const {h,Component} =wpa 
+        class AComponent extends Component{
+
+        }
+   </code></pre>
+</section>
+
+
+<h2>异步事件</h2>
+
+<section>
+    <p>
+        主要区别在于生命周期中的方法:beforeInstall、install、afterInstall、beforeRender、render、rendered、installed、uninstall
+        支持await,这源于实际工作需要，以及个人习惯！
+    </p>
+    <p>
+        异步、函数的使用增加了一下框架的灵活性。
+    </p>
+    <pre><code class="language-javascript">     // async install
+        {
+            async install(){
+               this.data = await fetch(...)
+            }
+        }
+   </code></pre>
+    <pre><code class="language-javascript">     // async fetch css  
+    {
+       static css=()=>{
+            return fetch(...css).then(r=>r.text())
+       }
+    }
+</code></pre>
+</section>
+
+<h2>样式扩展</h2>
+
+<section>
+    <p>
+        wpa 增加新的样式导入属性，提供了全局主题、局部主题样式扩展。
+    </p>
+    <h3>局部样式</h3>
+
+    <pre><code class="language-javascript">     // inject css to component's children  
+        render(&lt;wp-part-1 theme-css={ ... }&gt;&lt;/wp-part-1&gt;,&quot;body&quot;)
+   </code></pre>
+    <h3>全局样式</h3>
+    <pre><code class="language-javascript">     // inject css to component's children  
+    const {setTheme} =wpa 
+    setTheme(...)
+</code></pre>
+</section>

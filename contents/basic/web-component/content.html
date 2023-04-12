@@ -1,0 +1,89 @@
+<h1>web components</h1>
+<section>
+    <p>
+        WebComponents提供一种更复杂的组件模型，同时也是H5的重要特性。
+    </p>
+    <p>
+        WebComponents规范的进一步完善，很多现存的组件开发框架会受到很多正向与负向的影响。
+    </p>
+    <p>
+        WebComponents较之函数式的组件，可以简单的通过公开方法、事件回调等方式增强可用性。
+    </p>
+</section>
+
+<h2>参考</h2>
+
+<section>
+    <p>
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components" target="_blank">MDN Web Components</a>
+    </p>
+    <p>
+        Web Components有很多优势，需要自己体会。
+    </p>
+</section>
+
+<h2>DEMO</h2>
+
+<section>
+    <p>
+       一个简单的todos
+    </p>
+    <pre><code class="language-javascript">   
+        define(
+            "wp-todos",
+            class extends Component {
+              static defaultProps = {
+                todos: [],
+              };
+              get todos() {
+                return this.props.todos;
+              }
+              add(todo) {
+                this.todos.push(todo);
+                this.update();
+              }
+              remove(index) {
+                this.todos.splice(index, 1);
+                this.update();
+              }
+              render() {
+                return (
+                  &lt;&gt;
+                    &lt;label&gt;
+                      todo:&lt;input&gt;&lt;/input&gt;
+                      &lt;button
+                        onClick={(evt) =&gt; {
+                          this.add(this.$("input").value);
+                        }}
+                      &gt;
+                        +
+                      &lt;/button&gt;
+                    &lt;/label&gt;
+                    &lt;ul&gt;
+                      {this.todos.map((todo, index) =&gt; (
+                        &lt;li&gt;
+                          {todo}
+                          &lt;button
+                            onClick={(evt) =&gt; {
+                              this.remove(index);
+                            }}
+                          &gt;
+                            -
+                          &lt;/button&gt;
+                        &lt;/li&gt;
+                      ))}
+                    &lt;/ul&gt;
+                  &lt;/&gt;
+                );
+              }
+            }
+          );
+          //fetch from server
+          const todos = ["todo 1", "todo 2", "todo 3", "todo 4"];
+          render(&lt;wp-todos todos={todos} /&gt;, "body");
+   </code></pre>
+    <p>
+       web components创建的标签一旦插入到页面就可以成为一个独立HTML元素。
+       可以通过chrome查看元素功能选中后标签，在控制台中输入<b>$0</b>,调用该组件所有的公开方法，访问组件的所有公开属性。
+    </p>
+</section>

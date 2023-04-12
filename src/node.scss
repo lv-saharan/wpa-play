@@ -1,0 +1,17 @@
+:host {
+
+    .node {
+        .element {
+            line-height: 2;
+
+            .expander {
+                &::after {
+                    border-left-color: white;
+                }
+            }
+            .label{
+                padding-left: .5rem;
+            }
+        }
+    }
+}

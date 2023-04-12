@@ -1,0 +1,178 @@
+<h1>api</h1>
+<section>
+  <p>
+    前端框架需要调用大量的api，wpa默认整合了一种通用代理模式的API.
+
+    <a href="https://github.com/lv-saharan/dynamic-apis" target="_blank">dynamic-apis</a>
+  </p>
+
+  <h2>DEMO</h2>
+
+  <section>
+    <pre><code class="language-javascript">
+      import {
+        h,
+        render,
+        Component,
+        define,
+        createRef,
+        apis,
+      } from "http://wpa.flatweb.net/wpa/latest/wpa.js";
+      
+      define(
+        &quot;app-main&quot;,
+        class extends Component {
+          ctler = apis.createController(&quot;./talks/nav.json&quot;, import.meta.url, () =&gt; {
+            //自定义header，可以设置token
+            return {};
+          });
+          async install() {
+            this.data = await this.ctler.get();
+          }
+          render() {
+            return (
+              &lt;ul&gt;
+                {this.data.map((node) =&gt; (
+                  &lt;li&gt;{node.label ?? node.key}&lt;/li&gt;
+                ))}
+              &lt;/ul&gt;
+            );
+          }
+        }
+      );
+      
+      render(&lt;app-main /&gt;, &quot;body&quot;);
+      
+</code></pre>
+  </section>
+
+  <h3>create controller</h3>
+  <section>
+    <pre><code class="language-javascript">
+      import { createController } from "dynamic-apis";
+      //使用json-server 测试
+      const baseURL = "http://127.0.0.1:3000/";
+      const postCtrler = createController("posts", baseURL);
+      //with header
+      const postCtrler = createController("posts", baseURL, {
+        "some-header": "header-value",
+      });
+      //dynamic header
+      let count = 0;
+      const postCtrler = createController("posts", baseURL, () => {
+        return { "some-header": "header-value", 
+                 "count-header": count++,
+                 "AuthToken":getToken()
+               };
+      });
+    
+</code></pre>
+  </section>
+  <h3>get all
+  </h3>
+  <section>
+    <pre><code class="language-javascript">
+      let posts = await postCtrler.get();
+      //fetch   :GET  http://127.0.0.1:3000/posts
+    
+</code></pre>
+  </section>
+  <h3>get by id
+  </h3>
+  <section>
+    <pre><code class="language-javascript">
+      let posts = await postCtrler.get(1);
+      //fetch   :GET  http://127.0.0.1:3000/posts/1
+      
+      //batch
+      let posts = await postCtrler.get(1, 2, 3);
+      //fetch   :GET  http://127.0.0.1:3000/posts/1,2,3
+      //warning json-server not support
+    
+</code></pre>
+  </section>
+
+  <h3>query</h3>
+  <section>
+    <pre><code class="language-javascript">
+      let posts = await postCtrler.get({ author: "saharan" });
+      //fetch   :GET  http://127.0.0.1:3000/posts?author=saharan
+      
+      let posts = await postCtrler.get({ user: { author: "saharan" } });
+      //fetch   :GET  http://127.0.0.1:3000/posts?user.author=saharan
+    
+</code></pre>
+  </section>
+  <h3>post</h3>
+  <section>
+    <pre><code class="language-javascript">
+      let result = await postCtrler.add({
+        title: "dynamic api",
+        author: "saharan",
+      });
+      //fetch :POST http://127.0.0.1:3000/posts
+      //body :{...}
+      //postCtrler.post also work
+    
+</code></pre>
+  </section>
+  <h3>put</h3>
+  <section>
+    <pre><code class="language-javascript">
+      let result = await postCtrler.put(1, {
+        title: "dynamic api",
+        author: "saharan",
+      });
+      //fetch :PUT http://127.0.0.1:3000/posts/1
+      //body :{...}
+      //postCtrler.update also work
+    
+</code></pre>
+  </section>
+  <h3>patch</h3>
+  <section>
+    <pre><code class="language-javascript">
+      let result = await postCtrler.modify(1, {
+        author: "saharan",
+      });
+      //fetch :PATCH http://127.0.0.1:3000/posts/1
+      //body :{...}
+      //postCtrler.patch also work
+    
+</code></pre>
+  </section>
+  <h3>delete</h3>
+  <section>
+    <pre><code class="language-javascript">
+      let result = await postCtrler.del(1);
+      //fetch :DELETE http://127.0.0.1:3000/posts/1
+      
+      //batch
+      let result = await postCtrler.del(1, 2, 3);
+      //fetch :DELETE http://127.0.0.1:3000/posts/1,2,3
+    
+</code></pre>
+  </section>
+
+
+  <h3>path,id support</h3>
+  <section>
+    <pre><code class="language-javascript">
+      const result = await postCtrler.id(2).comments.get();
+      //fetch :GET  http://127.0.0.1:3000/posts/1/comments
+      //  postCtrler.path(2).comments.get() also work
+      
+      const addResult = await postCtrler.id(2).comments.add({
+        body: "some comment!!!",
+        postId: 2,
+      });
+      //fetch :POST  http://127.0.0.1:3000/posts/1/comments
+      
+      //some server api name contains (get|add |...) method prefix
+      
+      const result = await someCtrler.path("getUser").get(userId);
+      
+      //fetch :GET http://127.0.0.1:3000/some.../getUser/userId
+    
+</code></pre>
+  </section>

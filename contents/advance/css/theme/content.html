@@ -1,0 +1,110 @@
+<h1>theme</h1>
+<section>
+  <p>
+   theme，wpa的主题機制
+  </p>
+  <p>wpa theme 是通過css變量實現的，這個在wpa中仍然試用</p>
+  <p>
+    主題的三種方式
+  <ul>
+
+    <li>
+      css 變量
+    </li>
+    <li>
+     theme-css 屬性局部注入
+    </li>
+    <li>
+      setTheme方法全局注入
+    </li>
+  </ul>
+    css变量只能修改预设的css变量。theme-css属性注入和setTheme可以实现任意css样式覆盖。
+  </p>
+</section>
+<h2>DEMO</h2>
+<h3>定以通过修改css变量设置样式的组件</h3>
+<section>
+  <pre><code class="language-javascript">
+    define(
+      &quot;a-tag&quot;,
+      class extends Component {
+        static css = css; //css 文件
+        render() {
+          return (
+            &lt;h1&gt;
+              css demo
+              &lt;button
+                onClick={(evt) =&gt; {
+                  this.style.setProperty(&quot;--wp-h1-color&quot;, &quot;blue&quot;);
+                }}
+              &gt;
+                set css var
+              &lt;/button&gt;
+            &lt;/h1&gt;
+          );
+        }
+      }
+    );
+    render(
+      &lt;fieldset&gt;
+        &lt;legend&gt;css var &lt;/legend&gt;
+        &lt;a-tag&gt;&lt;/a-tag&gt;
+      &lt;/fieldset&gt;,
+      &quot;body&quot;
+    );
+                            
+</code></pre>
+<h3>通过父组件注入的主题</h3>
+<section>
+  <pre><code class="language-javascript">
+    
+define(
+  &quot;b-tag&quot;,
+  class extends Component {
+    render() {
+      return (
+        &lt;&gt;
+          &lt;a-tag&gt;&lt;/a-tag&gt;
+          &lt;a-tag&gt;&lt;/a-tag&gt;
+          &lt;a-tag&gt;&lt;/a-tag&gt;
+        &lt;/&gt;
+      );
+    }
+  }
+);
+render(
+  &lt;fieldset&gt;
+    &lt;legend&gt;theme-css 注入&lt;/legend&gt;
+    &lt;b-tag
+      theme-css={`
+    h1{
+      text-decoration: underline;
+    }
+  `}
+    &gt;&lt;/b-tag&gt;
+  &lt;/fieldset&gt;,
+  &quot;body&quot;
+);
+               
+</code></pre>
+
+<h3>通过setTheme方法主题</h3>
+<section>
+  <pre><code class="language-javascript">
+
+    render(
+      &lt;fieldset&gt;
+        &lt;legend&gt;全局主题&lt;/legend&gt;
+        &lt;button onClick={(evt) =&gt; {
+          setTheme(`
+          h1::after{
+            content:'全局注入';
+            color:black;
+          }
+          `)
+        }}&gt;setTheme&lt;/button&gt;
+      &lt;/fieldset&gt;,
+      &quot;body&quot;
+    );
+                   
+</code></pre>

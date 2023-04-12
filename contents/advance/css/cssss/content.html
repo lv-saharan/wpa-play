@@ -1,0 +1,72 @@
+<h1>cssss</h1>
+<section>
+  <p>
+    cssss 与static css一致,css属性之外的一个选择，支持任意的书写方式。
+    字符串、数组、函数、还支持多层嵌套。一般数组+函数就足够使用了。
+  </p>
+  <p>wpa 中CSS需要理解成一种样式组件</p>
+  <p>
+    stylesheets有二种引入方式
+  <ul>
+
+    <li>
+      cssss，是css的一个补充，css只支持字符串返回，cssss可以是最终可以构造成cssstylesheet的任何类型
+    </li>
+    <li>
+      props cssss,外部设置的样式，由父组件设置
+    </li>
+  </ul>
+
+  </p>
+</section>
+<h2>DEMO</h2>
+
+<pre><code class="language-javascript">   
+  const cssss = new CSSStyleSheet();
+  cssss.replaceSync(`
+  :host{
+    border:solid 3px #ee0088;
+    
+  }
+  `);
+  render(&lt;a-tag cssss={cssss} css=&quot;h1{color:red}&quot;&gt;&lt;/a-tag&gt;, &quot;body&quot;);
+
+</code></pre>
+
+
+
+<h3>嵌套一个函数</h3>
+<section>
+
+  <pre><code class="language-javascript">
+  render(
+  &lt;a-tag
+    cssss={[
+      cssss,
+      () =&gt; {
+        return Promise.resolve(`
+        :host h1::before{
+          color:green;
+          content:'【*】'
+     }
+        `);
+      },
+      () =&gt; {
+        return `:host h1::after{
+         color:black;
+         content:&#39;clock:${new Date().getHours()}&#39;
+    }`;
+      },
+    ]}
+    css=&quot;h1{color:yellow}&quot;
+  &gt;&lt;/a-tag&gt;,
+  &quot;body&quot;
+);
+
+</code></pre>
+  <p>
+    可以嵌套Promise，这样可以异步加载样式
+  </p>
+  <p>建议还是使用CSSStyleSheet构造好样式单</p>
+  <p>CSSStyleSheet可以作为样式穿透的重要工具</p>
+</section>

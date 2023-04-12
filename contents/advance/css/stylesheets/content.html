@@ -1,0 +1,72 @@
+<h1>stylesheets</h1>
+<section>
+  <p>
+    stylesheets 用来引入外部样式。
+    
+  </p>
+  <p>
+    stylesheets有三种引入方式
+    <ul>
+      <li>
+        static stylesheets，同一类型组件共享
+      </li>
+      <li>
+        stylesheets，当前实例的样式，每个可以有所不同
+      </li>
+      <li>
+        props style-sheets,外部设置的样式，由父组件设置
+      </li>
+    </ul>
+    
+  </p>
+  <p>
+    优点：
+  <ul>
+    <li>
+      容易使用，就像我们使用其他样式表一样
+    </li>
+    <li>
+      Web Components 样式隔离，不用担心影响其他组件
+    </li>
+
+  </ul>
+  缺点：
+  <ul>
+    <li>
+      渲染比较慢，如果没有提起缓存样式表，可以看到组件的“闪烁”
+    </li>
+    <li>
+      不太便携 
+    </li>
+
+  </ul>
+  </p>
+  <p>
+    wpa支持动态的stylesheets，可以根据情况自动增减。
+  </p>
+</section>
+<h2>DEMO</h2>
+
+<pre><code class="language-javascript">   
+  class extends Component {
+    //可以函数、string，数组
+    static stylesheets = new URL('./shared.css', currRoot).href
+
+    //只是一个状态字段没有任何特殊作用
+    state = 0
+
+    stylesheets() {
+      if (this.state === 0) {
+        return new URL('./a.css', currRoot).href
+      }
+      if (this.state === 1) {
+        return new URL('./b.css', currRoot).href
+      }
+      if (this.state === 2) {
+        return [new URL('./b.css', currRoot).href, new URL('./b.css', currRoot).href]
+      }
+    }
+</code></pre>
+
+
+ 

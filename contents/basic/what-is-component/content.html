@@ -1,0 +1,88 @@
+<h1>组件</h1>
+
+<section>
+    <p>
+        组件有很多种理解，前端实际工作中更喜欢把包含UI + 功能可复用（也不一定）的封装体认作组件。
+    </p>
+</section>
+
+
+<h2>最简单的组件</h2>
+
+<section>
+    <p>
+        基本类型
+    </p>
+    <pre><code class="language-javascript">     // string component
+        {
+            const component ="hello,world"
+            render(component,"body")
+        }
+   </code></pre>
+    <pre><code class="language-javascript">     // html component
+    {
+        component = &lt;hr /&gt;
+        render(component,"body")
+    }
+</code></pre>
+    <pre><code class="language-javascript">     // int component 
+        {
+            const component =1000
+            render(component,"body")
+        }
+</code></pre>
+    <pre><code class="language-javascript">     // expression component 
+    {
+        component = 1000
+        //表达式
+        render(&lt;h1&gt;表达式：{component},{1+1} ,{9 * 9}&lt;/h1&gt;, &#x27;body&#x27;)
+    }
+</code></pre>
+</section>
+
+<h2>函数组件</h2>
+
+<section>
+    <p>
+        函数组件可以实现复杂逻辑
+    </p>
+    <h3>函数节点</h3>
+
+    <pre><code class="language-javascript">     // function node  component 
+    {
+        render(() =&gt; {
+            return &lt;h1&gt;这是一个函数节点&lt;/h1&gt;
+        }, &quot;body&quot;)
+    }
+</code></pre>
+    <h3>函数标签</h3>
+    <pre><code class="language-javascript">     // function tag  component 
+        {
+            function AComponent() {
+                return &lt;h1&gt;这是一个函数标签&lt;/h1&gt;
+            }
+            render(&lt;AComponent /&gt;, &quot;body&quot;)
+        }
+    </code></pre>
+</section>
+
+<h2>Web Components</h2>
+
+<section>
+    <p>
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components" target="_blank"> Web Components </a>
+    </p>
+
+
+    <pre><code class="language-javascript">     // web components
+    {
+        define(&quot;a-tag&quot;, class extends Component {
+            render() {
+                return &lt;h1&gt;这是一个WebComponent&lt;/h1&gt;
+            }
+        })
+        render(&lt;a-tag /&gt;, &quot;body&quot;)
+    }
+</code></pre>
+
+</section>

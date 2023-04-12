@@ -1,0 +1,46 @@
+<h1>$</h1>
+<section>
+  <p>
+    $ 是一个快捷的查找元素的方法，是querySelector的别名。
+    $$ 是querySelectorAll的别名用法，返回数组。这两个方法可以代替ref的使用
+    
+  </p>
+
+  <h2>DEMO</h2>
+  
+  <section>
+    <pre><code class="language-javascript">
+      define(
+        &quot;app-main&quot;,
+        class extends Component {
+          h1Ref = createRef();
+      
+          render() {
+            return (
+              &lt;&gt;
+                &lt;button
+                  onClick={(evt) =&gt; {
+                    if (this.h1Ref.current == this.$(&quot;h1&quot;)) {
+                      this.$$(&quot;h2,h3,h4,h5&quot;).forEach((el) =&gt; {
+                        el.innerHTML += &quot;$ is equal to createRef ；&quot;;
+                      });
+                    }
+                  }}
+                &gt;
+                  test
+                &lt;/button&gt;
+                &lt;h1 ref={this.h1Ref}&gt;h1&lt;/h1&gt;
+                &lt;h2&gt;h2&lt;/h2&gt;
+                &lt;h3&gt;h3&lt;/h3&gt;
+                &lt;h4&gt;h4&lt;/h4&gt;
+                &lt;h5&gt;h5&lt;/h5&gt;
+              &lt;/&gt;
+            );
+          }
+        }
+      );
+      
+      render(&lt;app-main /&gt;, &quot;body&quot;);
+      
+</code></pre>
+ 

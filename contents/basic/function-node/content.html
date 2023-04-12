@@ -1,0 +1,76 @@
+<h1>Function VNODE</h1>
+
+<section>
+    <p>
+        函数节点！函数节点是WPA中可以自我更新的最小单位。
+    </p>
+</section>
+
+<h2>表达式</h2>
+
+<section>
+    <p>
+        表达式类的结果是确定的，函数类型是可以每次计算出新的结果的。
+    </p>
+    <pre><code class="language-javascript">   
+        let count = 1;
+        render(&lt;h1&gt;这是一个表达式节点：{count}&lt;/h1&gt;, &quot;body&quot;);
+   </code></pre>
+    <p>
+
+    </p>
+</section>
+
+<h2>函数节点</h2>
+
+<section>
+    <p>
+       函数节点会生成一个可更新的vnode，会把包裹的对象赋予update的能力
+    </p>
+    <pre><code class="language-javascript">   
+        let count = 1;
+        render(() =&gt; {
+            return (
+              &lt;h1&gt;
+                这是一个函数节点：
+                {() =&gt; {
+                  return &lt;output&gt;{count}&lt;/output&gt;;
+                }}
+                &lt;button
+                  onClick={(e) =&gt; {
+                    count++;
+                    document.querySelector(&quot;output&quot;).update();
+                  }}
+                &gt;
+                  +
+                &lt;/button&gt;
+              &lt;/h1&gt;
+            );
+          }, &quot;body&quot;);
+   </code></pre>
+ 
+</section>
+
+
+<section>
+    <p>
+       函数节点也可以使用注入的update方法，实现自更新的操作
+    </p>
+    <pre><code class="language-javascript">   
+        render(() =&gt; {
+            return (
+              &lt;h1&gt;
+                这是一个函数节点：
+                {({ update }) =&gt; {
+                  setTimeout(() =&gt; {
+                    update();
+                  }, 1000);
+                  return &lt;output&gt;{new Date().toUTCString()}&lt;/output&gt;;
+                }}
+              &lt;/h1&gt;
+            );
+          }, &quot;body&quot;);
+          
+   </code></pre>
+ 
+</section>

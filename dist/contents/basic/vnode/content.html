@@ -1,0 +1,131 @@
+<h1>VNODE</h1>
+
+<section>
+    <p>
+        vnode是重要的概念，理解了vnode会帮助你更自由、随心的写一些代码。
+    </p>
+</section>
+
+<h2>everything is</h2>
+
+<section>
+    <pre><code class="language-javascript">     // wpa render
+        {
+            export function render(vnode, parent, store) {
+                parent = typeof parent === 'string' ? document.querySelector(parent) : parent
+                if (store) {
+                  parent.store = store
+                }
+                return diff(null, vnode, parent, false)
+            }
+        }
+   </code></pre>
+    <p>
+        WPA 中的render接受的是一个vnode对象，前面的例子可以看到vnode可以是：
+    <ul>
+        <li>String</li>
+        <li>Number</li>
+        <li>Boolean</li>
+        <li>Function</li>
+        <li>Object</li>
+        <li>JSX</li>
+    </ul>
+    当然也可以是数组
+    </p>
+
+
+    <h2>详解</h2>
+    
+    <section>
+        <p>
+            基本类型就不赘述，详细的看一下其他几种类型。
+        </p>
+        
+        <h3>Plain Object</h3>
+
+        <pre><code class="language-javascript">       
+        //plain object
+        render({
+            nodeName: "h1",
+            attributes: {
+                style: {
+                    color: "red",
+                    border: "solid #ccc 1px"
+                }
+            },
+            children: ["hello", ",", "world", "!"]
+        }, "body")
+  
+</code></pre>
+        <h3>h 函数</h3>
+        <section>
+            <pre><code class="language-javascript">     
+                //h source code 
+                //nodeName,attributes ,...children
+                export function h(nodeName, attributes) 
+           </code></pre>
+            <p>jsx编译后WPA用h函数来生成vnode</p>
+            <p>直接作为表达式使用也是可以的</p>
+
+            <pre><code class="language-javascript">     
+                //h function
+                render(h("h1", {
+                    style: {
+                        color: "blue",
+                        border: "solid #ccc 1px"
+                    }
+                }, "hello", ",", "world", "!"), "body")
+           </code></pre>
+        </section>
+    </section>
+
+    <h3>jsx</h3>
+    <section>
+        <p>jsx编译后会变成h函数的表达式，本质上和h函数一致</p>
+        <pre><code class="language-html">     
+             //jsx
+             &lt;h1 style=&quot;color: blue; border: 1px solid rgb(204, 204, 204);&quot;&gt;hello,world!&lt;/h1&gt;
+       </code></pre>
+        <p>编译后</p>
+        <pre><code class="language-javascript">     
+            //h function
+            const vnode = /* @__PURE__ */ h("h1", {
+                style: "color: blue; border: 1px solid rgb(204, 204, 204);"
+              }, "hello,world!");
+       </code></pre>
+    </section>
+
+    <h3>function</h3>
+    <section>
+        <p>function vnode 是一个新特性，在实际工作中有一定作用</p>
+        <pre><code class="language-html">     
+              render(() => {
+                return vnode;
+              }, "body")
+       </code></pre>
+        <p>由于vnode是函数，它的结果需要计算，也是可以改变的，也就是可以创建一个可以自由更新的更小单元。</p>
+
+    </section>
+
+    <h3>function tag</h3>
+    <section>
+        <p>function tag 也是一个新特性，可以类比其他框架</p>
+        <p>function的扩展是的WPA的开发不再仅限于Web组件模式。</p>
+        <pre><code class="language-javascript">     
+            function AComponent() {
+                return &lt;h1&gt;这是一个函数标签&lt;/h1&gt;
+            }
+            
+            render(&lt;AComponent /&gt;, &quot;body&quot;)
+      </code></pre>
+       <p>编译后</p>
+       <pre><code class="language-javascript">     
+        function AComponent() {
+            return /* @__PURE__ */ h("h1", {
+              style: "color: blue; border: 1px solid rgb(204, 104, 204);"
+            }, "\u8FD9\u662F\u4E00\u4E2A\u51FD\u6570\u6807\u7B7E");
+          }
+          render(/* @__PURE__ */ h(AComponent, null), "body");
+      </code></pre>
+    </section>
+</section>

@@ -1,0 +1,77 @@
+<h1>select</h1>
+<p>
+  wp-select 组件
+</p>
+
+<h2>DEMO</h2>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+    
+    const options = Array.from({ length: 20 }).map((v, index) =&gt; {
+      return {
+        value: index,
+        text:
+          index == 10 ? (
+            &lt;b style={{ color: &quot;red&quot; }}&gt;{&quot;option-&quot; + index}&lt;/b&gt;
+          ) : (
+            &quot;option-&quot; + index
+          ),
+      };
+    });
+    
+    define(
+      &quot;demo-select&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;form is=&quot;wp-form&quot;&gt;
+              &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label for=&quot;post&quot; class=&quot;form-label&quot;&gt;
+                  Options
+                &lt;/label&gt;
+                &lt;wp-select
+                  max=&quot;10&quot;
+                  min=&quot;2&quot;
+                  options={options}
+                  required
+                  class=&quot;form-control&quot;
+                &gt;&lt;/wp-select&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;button class=&quot;btn btn-primary&quot;&gt;提交&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          );
+        }
+      }
+    );
+    render(&lt;demo-select /&gt;, &quot;body&quot;);
+      
+  </code></pre>
+
+  <div class="demo">
+    <form is="wp-form">
+      <div class="mb-3">
+        <label for="post" class="form-label" style="color:black">
+          Options:可以提交2-10个选项
+        </label>
+        <wp-select props="store.content" required class="form-control" min="2" max="10"></wp-select>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary">提交</button>
+      </div>
+    </form>
+  </div>
+</section>

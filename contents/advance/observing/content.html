@@ -1,0 +1,182 @@
+<h1>observing</h1>
+<section>
+  <p>
+    observing实现WPA的自动更新。
+  </p>
+
+  <h2>DEMO</h2>
+  <h3>
+    定义一个可以监视的对象
+  </h3>
+  <section>
+    <pre><code class="language-javascript">
+   
+const store = observe({
+  name: "lv-saharan",
+  gender: "male",
+  likes: ["tv", "music", "reading"],
+  get likesCount() {
+    return this.likes.length;
+  },
+
+  some: {
+    prop1: 123,
+    prop2: true,
+  },
+});
+
+</code></pre>
+
+<h3>正常使用这个监控的对象</h3>
+<section>
+  <pre><code class="language-javascript">
+
+    define(
+      &quot;app-main&quot;,
+      class extends Component {
+        static css = `
+        div{
+          line-height: 1.5;
+          margin: .6rem;
+        }
+        div span{
+          display:inline-block;
+          margin-right:.2rem;
+          width:10rem;
+        }
+        button{
+          padding:.5rem;
+          margin:.3rem;
+        }
+        `;
+    
+        data = store;
+        //指定绑定的范围
+        get bindingScope() {
+          return this.data;
+        }
+        showLikes = true;
+        render() {
+          return (
+            &lt;fieldset&gt;
+              &lt;legend&gt;form binding&lt;/legend&gt;
+              &lt;div&gt;
+                &lt;span&gt;name:&lt;/span&gt;
+                &lt;input o-model=&quot;name&quot; style=&quot;width:50rem;&quot;&gt;&lt;/input&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;span&gt;gender:&lt;/span&gt;
+                &lt;input
+                  o-model=&quot;gender&quot;
+                  type=&quot;radio&quot;
+                  value=&quot;male&quot;
+                  name=&quot;gender&quot;
+                &gt;&lt;/input&gt;
+                male
+                &lt;input
+                  o-model=&quot;gender&quot;
+                  type=&quot;radio&quot;
+                  value=&quot;female&quot;
+                  name=&quot;gender&quot;
+                &gt;&lt;/input&gt;
+                female
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;span&gt;likes:&lt;/span&gt;
+    
+                {[&quot;tv&quot;, &quot;game&quot;, &quot;reading&quot;, &quot;music&quot;, &quot;others&quot;].map((l) =&gt; (
+                  &lt;label&gt;
+                    &lt;input
+                      o-model=&quot;likes&quot;
+                      type=&quot;checkbox&quot;
+                      value={l}
+                      onChange={(evt) =&gt; {
+                        updateBindings();
+                      }}
+                    &gt;&lt;/input&gt;
+                    {l}
+                  &lt;/label&gt;
+                ))}
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;span&gt;likes count&lt;/span&gt;
+                &lt;select o-model=&quot;likesCount&quot; disabled&gt;
+                  &lt;option&gt;1&lt;/option&gt;
+                  &lt;option&gt;2&lt;/option&gt;
+                  &lt;option&gt;3&lt;/option&gt;
+                  &lt;option&gt;4&lt;/option&gt;
+                  &lt;option&gt;5&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;span&gt;some&lt;/span&gt;
+                prop1:&lt;input type=&quot;number&quot; o-model=&quot;some.prop1&quot;&gt;&lt;/input&gt; prop2:
+                &lt;input type=&quot;checkbox&quot; o-model=&quot;some.prop2&quot;&gt;&lt;/input&gt;
+              &lt;/div&gt;
+              &lt;button
+                onClick={(evt) =&gt; {
+                  this.data.name = &quot;sa&quot;;
+                  this.updateBindings();
+                }}
+              &gt;
+                set name to sa and updateBindings
+              &lt;/button&gt;
+    
+              &lt;button
+                onClick={(evt) =&gt; {
+                  alert(JSON.stringify(this.data));
+                }}
+              &gt;
+                show data
+              &lt;/button&gt;
+            &lt;/fieldset&gt;
+          );
+        }
+      }
+    );
+    render(&lt;app-main /&gt;, &quot;body&quot;);
+    
+
+</code></pre>
+
+<h3>
+  需要同步更新的的地方
+</h3>
+<section>
+  <pre><code class="language-javascript">
+
+    define(
+      &quot;a-observing&quot;,
+      class extends Component {
+        install() {
+          store.addCallbacks(({ path, oldVal, val }) =&gt; {
+            if (oldVal != val) {
+              this.update();
+            }
+          });
+        }
+        render() {
+          return (
+            &lt;ul&gt;
+              &lt;li&gt;name:{store.name}&lt;/li&gt;
+              &lt;li&gt;gender:{store.gender}&lt;/li&gt;
+              &lt;li&gt;likes:{store.likes.join(',')}&lt;/li&gt;
+              &lt;li&gt;some.prop1:{store.some.prop1}&lt;/li&gt;
+              &lt;li&gt;some.prop1:{store.some.prop2==true?&quot;true&quot;:&quot;false&quot;}&lt;/li&gt;
+            &lt;/ul&gt;
+          );
+        }
+      }
+    );
+    render(
+      &lt;fieldset&gt;
+        &lt;legend&gt;observing&lt;/legend&gt;
+        &lt;a-observing&gt;&lt;/a-observing&gt;
+      &lt;/fieldset&gt;,
+      &quot;body&quot;
+    );
+
+</code></pre>
+<p>
+  通过addCallbacks回调，判断是否需要更新组件。
+</p>
