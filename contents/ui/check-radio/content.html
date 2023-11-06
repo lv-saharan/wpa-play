@@ -1,0 +1,180 @@
+<h1>check-radio</h1>
+<p>
+  check-radio 组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-checkbox&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;>
+              &lt;div class=&quot;form-check&quot;>
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  value=&quot;&quot;
+                  id=&quot;flexCheckDefault&quot;
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexCheckDefault&quot;&gt;
+                  Default checkbox
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  value=&quot;&quot;
+                  id=&quot;flexCheckChecked&quot;
+                  checked
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexCheckChecked&quot;&gt;
+                  Checked checkbox
+                &lt;/label&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  value=&quot;&quot;
+                  id=&quot;flexCheckIndeterminateDisabled&quot;
+                  disabled
+                /&gt;
+                &lt;label
+                  class=&quot;form-check-label&quot;
+                  for=&quot;flexCheckIndeterminateDisabled&quot;
+                &gt;
+                  Disabled indeterminate checkbox
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  value=&quot;&quot;
+                  id=&quot;flexCheckDisabled&quot;
+                  disabled
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexCheckDisabled&quot;&gt;
+                  Disabled checkbox
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  value=&quot;&quot;
+                  id=&quot;flexCheckCheckedDisabled&quot;
+                  checked
+                  disabled
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexCheckCheckedDisabled&quot;&gt;
+                  Disabled checked checkbox
+                &lt;/label&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;radio&quot;
+                  name=&quot;flexRadioDefault&quot;
+                  id=&quot;flexRadioDefault1&quot;
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexRadioDefault1&quot;&gt;
+                  Default radio
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;radio&quot;
+                  name=&quot;flexRadioDefault&quot;
+                  id=&quot;flexRadioDefault2&quot;
+                  checked
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexRadioDefault2&quot;&gt;
+                  Default checked radio
+                &lt;/label&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;form-check form-switch&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  role=&quot;switch&quot;
+                  id=&quot;flexSwitchCheckDefault&quot;
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexSwitchCheckDefault&quot;&gt;
+                  Default switch checkbox input
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check form-switch&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  role=&quot;switch&quot;
+                  id=&quot;flexSwitchCheckChecked&quot;
+                  checked
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexSwitchCheckChecked&quot;&gt;
+                  Checked switch checkbox input
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check form-switch&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  role=&quot;switch&quot;
+                  id=&quot;flexSwitchCheckDisabled&quot;
+                  disabled
+                /&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;flexSwitchCheckDisabled&quot;&gt;
+                  Disabled switch checkbox input
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-check form-switch&quot;&gt;
+                &lt;input
+                  class=&quot;form-check-input&quot;
+                  type=&quot;checkbox&quot;
+                  role=&quot;switch&quot;
+                  id=&quot;flexSwitchCheckCheckedDisabled&quot;
+                  checked
+                  disabled
+                /&gt;
+                &lt;label
+                  class=&quot;form-check-label&quot;
+                  for=&quot;flexSwitchCheckCheckedDisabled&quot;
+                &gt;
+                  Disabled checked switch checkbox input
+                &lt;/label&gt;
+              &lt;/div&gt;
+            
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-checkbox /&gt;, &quot;body&quot;);
+  </code></pre>
+  <div class="demo">
+    <wp-checkbox props="store.content"></wp-checkbox>
+    <!-- <wp-table props="store.content"></wp-table> -->
+  </div>
+</section>

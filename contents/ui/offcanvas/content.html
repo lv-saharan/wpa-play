@@ -1,0 +1,112 @@
+<h1>滚动条</h1>
+<p>
+  滚动条组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define, createRef } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-off&quot;,
+      class extends Component {
+        static css =[
+          CSS.getCSSStyleSheets(&quot;reboot&quot;),
+          `
+          :host{
+            position:relative;
+            display:block;
+            height:2000px;
+          }
+          `,
+        ];
+        leftRef = createRef();
+        rightRef = createRef();
+        topRef = createRef();
+        bottomRef = createRef();
+
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-offcanvas
+                visible
+                position=&quot;static&quot;
+                style=&quot;border-top:solid 1px #ccc;border-bottom:solid 1px #ccc&quot;
+                title=&quot;hello&quot;
+              &gt;
+                hello,do something
+              &lt;/wp-offcanvas&gt;
+
+              &lt;div&gt;
+                &lt;button
+                  onClick={(evt) =&gt; {
+                    this.leftRef.current.toggle();
+                  }}
+                &gt;
+                  toggle left
+                &lt;/button&gt;
+                &lt;button
+                  onClick={(evt) =&gt; {
+                    this.rightRef.current.toggle();
+                  }}
+                &gt;
+                  toggle right
+                &lt;/button&gt;
+                &lt;button
+                  onClick={(evt) =&gt; {
+                    this.topRef.current.toggle();
+                  }}
+                &gt;
+                  toggle top
+                &lt;/button&gt;
+                &lt;button
+                  onClick={(evt) =&gt; {
+                    this.bottomRef.current.toggle();
+                  }}
+                &gt;
+                  toggle bottom
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;wp-offcanvas ref={this.leftRef}&gt;
+                &lt;div slot=&quot;title&quot;&gt;
+                  &lt;wp-icon name=&quot;home&quot; /&gt; 文件
+                &lt;/div&gt;
+                hello,do something
+              &lt;/wp-offcanvas&gt;
+
+              &lt;wp-offcanvas
+                ref={this.rightRef}
+                placement=&quot;end&quot;
+                use-backdrop=&quot;false&quot;
+                duration=&quot;1&quot;
+              &gt;
+                &lt;div slot=&quot;title&quot;&gt;
+                  &lt;wp-icon name=&quot;home&quot; /&gt; 文件
+                &lt;/div&gt;
+                hello,do something
+              &lt;/wp-offcanvas&gt;
+
+              &lt;wp-offcanvas ref={this.topRef} placement=&quot;top&quot;&gt;
+                &lt;div slot=&quot;title&quot;&gt;
+                  &lt;wp-icon name=&quot;home&quot; /&gt; 文件
+                &lt;/div&gt;
+                hello,do something
+              &lt;/wp-offcanvas&gt;
+
+              &lt;wp-offcanvas ref={this.bottomRef} placement=&quot;bottom&quot;&gt;
+                &lt;div slot=&quot;title&quot;&gt;
+                  &lt;wp-icon name=&quot;home&quot; /&gt; 文件
+                &lt;/div&gt;
+                hello,do something
+              &lt;/wp-offcanvas&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-off /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

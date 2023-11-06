@@ -1,0 +1,238 @@
+<h1>按钮</h1>
+<p>
+  按钮组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-buttons&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;breadcrumb&quot;,
+          &quot;utilities&quot;,
+          &quot;buttons&quot;,
+          &quot;button-group&quot;,
+          &quot;close&quot;
+        );
+        render() {
+          return (
+            &lt;div&gt;
+              &lt;div&gt;
+                &lt;a href=&quot;https://getbootstrap.com/docs/5.2/components/buttons/&quot;&gt;
+                  参考Bootstrap
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;wp-tab cssss={CSS.getCSSStyleSheets(&quot;buttons&quot;, &quot;button-group&quot;, &quot;close&quot;)}
+                items={[
+                  {
+                    nav: &quot;颜色&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;button class=&quot;btn&quot;&gt;default&lt;/button&gt;
+                        &lt;button class=&quot;btn btn-primary btn-primary2&quot;&gt;
+                          primary
+                        &lt;/button&gt;
+                        &lt;button class=&quot;btn btn-danger&quot;&gt;danger&lt;/button&gt;
+                        &lt;button class=&quot;btn btn-info&quot;&gt;info&lt;/button&gt;
+                        &lt;button class=&quot;btn btn-warning&quot;&gt;
+                          &lt;wp-icon name=&quot;person&quot; /&gt;
+                          info
+                        &lt;/button&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;基本&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                          Primary
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot;&gt;
+                          Secondary
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;
+                          Success
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot;&gt;
+                          Danger
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot;&gt;
+                          Warning
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-info&quot;&gt;
+                          Info
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-light&quot;&gt;
+                          Light
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;
+                          Dark
+                        &lt;/button&gt;
+
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-link&quot;&gt;
+                          Link
+                        &lt;/button&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;其他&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
+                          Link
+                        &lt;/a&gt;
+                        &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;
+                          Button
+                        &lt;/button&gt;
+                        &lt;input
+                          class=&quot;btn btn-primary&quot;
+                          type=&quot;button&quot;
+                          value=&quot;Input&quot;
+                        /&gt;
+                        &lt;input
+                          class=&quot;btn btn-primary&quot;
+                          type=&quot;submit&quot;
+                          value=&quot;Submit&quot;
+                        /&gt;
+                        &lt;input class=&quot;btn btn-primary&quot; type=&quot;reset&quot; value=&quot;Reset&quot; /&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;Outerline&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-primary&quot;&gt;
+                          Primary
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary&quot;&gt;
+                          Secondary
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-success&quot;&gt;
+                          Success
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-danger&quot;&gt;
+                          Danger
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-warning&quot;&gt;
+                          Warning
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-info&quot;&gt;
+                          Info
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-light&quot;&gt;
+                          Light
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-dark&quot;&gt;
+                          Dark
+                        &lt;/button&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;Size&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;
+                          Large button
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary btn-lg&quot;&gt;
+                          Large button
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot;&gt;
+                          Small button
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary btn-sm&quot;&gt;
+                          Small button
+                        &lt;/button&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;disable&quot;,
+                    pane: (
+                      &lt;div&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; disabled&gt;
+                          Primary button
+                        &lt;/button&gt;
+                        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; disabled&gt;
+                          Button
+                        &lt;/button&gt;
+                        &lt;button
+                          type=&quot;button&quot;
+                          class=&quot;btn btn-outline-primary&quot;
+                          disabled
+                        &gt;
+                          Primary button
+                        &lt;/button&gt;
+                        &lt;button
+                          type=&quot;button&quot;
+                          class=&quot;btn btn-outline-secondary&quot;
+                          disabled
+                        &gt;
+                          Button
+                        &lt;/button&gt;
+                      &lt;/div&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;group&quot;,
+                    pane: (
+                      &lt;&gt;
+                        &lt;div
+                          class=&quot;btn-group&quot;
+                          role=&quot;group&quot;
+                          aria-label=&quot;Basic example&quot;
+                        &gt;
+                          &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Left
+                          &lt;/button&gt;
+                          &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Middle
+                          &lt;/button&gt;
+                          &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Right
+                          &lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/&gt;
+                    ),
+                  },
+                  {
+                    nav: &quot;close&quot;,
+                    pane: (
+                      &lt;&gt;
+                        &lt;button
+                          type=&quot;button&quot;
+                          class=&quot;btn-close&quot;
+                          aria-label=&quot;Close&quot;
+                        &gt;&lt;/button&gt;
+
+                        &lt;button
+                          type=&quot;button&quot;
+                          class=&quot;btn-close&quot;
+                          disabled
+                          aria-label=&quot;Close&quot;
+                        &gt;&lt;/button&gt;
+                      &lt;/&gt;
+                    ),
+                  },
+                ]}
+              &gt;&lt;/wp-tab&gt;
+              &lt;slot&gt;&lt;/slot&gt;
+            &lt;/div&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-buttons /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

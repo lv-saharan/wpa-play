@@ -1,0 +1,256 @@
+<h1>wp表单</h1>
+<p>
+  wp表单组件
+</p>
+
+<h2></p>DEMO</h2></p>
+<h3></p>默认设置</h3></p>
+<section></p>
+  <pre></p><code class="language-javascript"></p>
+    import { h, render, define, Component, classNames, uniqueTag, createRef} from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+    const {
+      css: { getCSSStyleSheets },
+      form,
+    } = wpa.ui;
+
+    define(
+      &quot;wp-oiform&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;, 
+          &quot;buttons&quot;, 
+          &quot;forms&quot;, 
+          &quot;grid&quot;, 
+          &quot;utilities&quot;
+        );
+
+        render() {
+          return (
+            &lt;form is=&quot;wp-form&quot; class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;label for=&quot;validationCustom01&quot; class=&quot;form-label&quot;&gt;
+                  First name
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationCustom01&quot;
+                  value=&quot;Mark&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;valid-feedback&quot;&gt;Looks good!&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;label for=&quot;validationCustom02&quot; class=&quot;form-label&quot;&gt;
+                  Last name
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationCustom02&quot;
+                  value=&quot;Otto&quot;
+                  pattern=&quot;[a-zA-Z]+&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;valid-feedback&quot;&gt;Looks good!&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;label for=&quot;validationCustomUsername&quot; class=&quot;form-label&quot;&gt;
+                  Username
+                &lt;/label&gt;
+                &lt;div class=&quot;input-group has-validation&quot;&gt;
+                  &lt;span class=&quot;input-group-text&quot; id=&quot;inputGroupPrepend&quot;&gt;
+                    @
+                  &lt;/span&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    class=&quot;form-control&quot;
+                    id=&quot;validationCustomUsername&quot;
+                    aria-describedby=&quot;inputGroupPrepend&quot;
+                    required
+                  /&gt;
+                  &lt;div class=&quot;invalid-feedback&quot;&gt;Please choose a username.&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;label for=&quot;validationCustom03&quot; class=&quot;form-label&quot;&gt;
+                  City
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationCustom03&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;invalid-feedback&quot;&gt;Please provide a valid city.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;label for=&quot;validationCustom04&quot; class=&quot;form-label&quot;&gt;
+                  State
+                &lt;/label&gt;
+                &lt;select class=&quot;form-select&quot; id=&quot;validationCustom04&quot; required&gt;
+                  &lt;option selected disabled value=&quot;&quot;&gt;
+                    Choose...
+                  &lt;/option&gt;
+                  &lt;option&gt;...&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;div class=&quot;invalid-feedback&quot;&gt;Please select a valid state.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;label for=&quot;validationCustom05&quot; class=&quot;form-label&quot;&gt;
+                  Zip
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationCustom05&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;invalid-feedback&quot;&gt;Please provide a valid zip.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-12&quot;&gt;
+                &lt;div class=&quot;form-check&quot;&gt;
+                  &lt;input
+                    class=&quot;form-check-input&quot;
+                    type=&quot;checkbox&quot;
+                    value=&quot;&quot;
+                    id=&quot;invalidCheck&quot;
+                    required
+                  /&gt;
+                  &lt;label class=&quot;form-check-label&quot; for=&quot;invalidCheck&quot;&gt;
+                    Agree to terms and conditions
+                  &lt;/label&gt;
+                  &lt;div class=&quot;invalid-feedback&quot;&gt;
+                    You must agree before submitting.
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-12&quot;&gt;
+                &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;
+                  Submit form
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-oiform /&gt;, &quot;body&quot;);
+
+    define(
+      &quot;wp-oiform1&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;, 
+          &quot;buttons&quot;, 
+          &quot;forms&quot;, 
+          &quot;grid&quot;, 
+          &quot;utilities&quot;
+        );
+        #formRef = createRef();
+        installed() {
+          form.validate(this.#formRef.current);
+        }
+
+        render() {
+          return (
+            &lt;form class=&quot;row g-3&quot; ref={this.#formRef}&gt;
+              &lt;div class=&quot;col-md-4 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltip01&quot; class=&quot;form-label&quot;&gt;
+                  First name
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationTooltip01&quot;
+                  value=&quot;Mark&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;valid-tooltip&quot;&gt;Looks good!&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-4 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltip02&quot; class=&quot;form-label&quot;&gt;
+                  Last name
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationTooltip02&quot;
+                  value=&quot;Otto&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;valid-tooltip&quot;&gt;Looks good!&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-4 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltipUsername&quot; class=&quot;form-label&quot;&gt;
+                  Username
+                &lt;/label&gt;
+                &lt;div class=&quot;input-group has-validation&quot;&gt;
+                  &lt;span
+                    class=&quot;input-group-text&quot;
+                    id=&quot;validationTooltipUsernamePrepend&quot;
+                  &gt;
+                    @
+                  &lt;/span&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    class=&quot;form-control&quot;
+                    id=&quot;validationTooltipUsername&quot;
+                    aria-describedby=&quot;validationTooltipUsernamePrepend&quot;
+                    required
+                  /&gt;
+                  &lt;div class=&quot;invalid-tooltip&quot;&gt;
+                    Please choose a unique and valid username.
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-6 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltip03&quot; class=&quot;form-label&quot;&gt;
+                  City
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationTooltip03&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;invalid-tooltip&quot;&gt;Please provide a valid city.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-3 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltip04&quot; class=&quot;form-label&quot;&gt;
+                  State
+                &lt;/label&gt;
+                &lt;select class=&quot;form-select&quot; id=&quot;validationTooltip04&quot; required&gt;
+                  &lt;option selected disabled value=&quot;&quot;&gt;
+                    Choose...
+                  &lt;/option&gt;
+                  &lt;option&gt;...&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;div class=&quot;invalid-tooltip&quot;&gt;Please select a valid state.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-md-3 position-relative&quot;&gt;
+                &lt;label for=&quot;validationTooltip05&quot; class=&quot;form-label&quot;&gt;
+                  Zip
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;validationTooltip05&quot;
+                  required
+                /&gt;
+                &lt;div class=&quot;invalid-tooltip&quot;&gt;Please provide a valid zip.&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;col-12&quot;&gt;
+                &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;
+                  Submit form
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-oiform1 /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

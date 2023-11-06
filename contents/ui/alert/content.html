@@ -1,0 +1,65 @@
+<h1>警告</h1>
+<p>
+  警告组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    const themeColors = [
+      &quot;primary&quot;,
+      &quot;secondary&quot;,
+      &quot;success&quot;,
+      &quot;danger&quot;,
+      &quot;warning&quot;,
+      &quot;info&quot;,
+      &quot;light&quot;,
+      &quot;dark&quot;,
+    ];
+    define(
+      &quot;wp-notification&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-tab
+                items={[
+                  {
+                    nav: &quot;wp-alter&quot;,
+                    pane: (
+                      &lt;&gt;
+                        &lt;wp-alert closeable theme-color=&quot;success&quot;&gt;
+                          A simple alert—check it out!
+                          &lt;span className=&quot;aaa&quot;&gt;style test&lt;/span&gt;
+                        &lt;/wp-alert&gt;
+                        {themeColors.map((color) =&gt; (
+                          &lt;wp-alert theme-color={color}&gt;
+                            A simple {color} alert—check it out!
+                          &lt;/wp-alert&gt;
+                        ))}
+                      &lt;/&gt;
+                    ),
+                  }
+                ]}
+              /&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-notification /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

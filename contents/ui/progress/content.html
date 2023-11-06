@@ -1,0 +1,49 @@
+<h1>进度条</h1>
+<p>
+  进度条组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-prog&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          "reboot",
+          "progress",
+          "utilities",
+          "transitions"
+        );
+        percent = 26
+        installed() {
+          setInterval(() => {
+            if (this.percent < 100) {
+              this.percent++
+              this.update()
+            }
+          }, 1000);
+        }
+        render() {
+          return (
+            &lt;&gt;
+              hello,world!
+              &lt;wp-progress value={this.percent} style=&quot;height:1px;width:200px&quot;&gt;&lt;/wp-progress&gt;
+              &lt;hr /&gt;
+              &lt;wp-progress value={this.percent} class=&quot;bg-success&quot;&gt;&lt;/wp-progress&gt;
+              &lt;hr /&gt;
+              &lt;wp-progress value={this.percent} class=&quot;bg-danger&quot; striped&gt;&lt;/wp-progress&gt;
+              &lt;hr /&gt;
+              &lt;wp-progress value={this.percent} class=&quot;bg-danger&quot; striped animated&gt;&lt;/wp-progress&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-prog /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

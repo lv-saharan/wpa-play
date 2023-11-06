@@ -1,0 +1,82 @@
+<h1>图片</h1>
+<p>
+  图片组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-images&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;images&quot;,
+          &quot;tables&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;        
+              &lt;svg
+                class=&quot;bd-placeholder-img bd-placeholder-img-lg img-fluid&quot;
+                width=&quot;100%&quot;
+                height=&quot;250&quot;
+                xmlns=&quot;http://www.w3.org/2000/svg&quot;
+                role=&quot;img&quot;
+                aria-label=&quot;Placeholder: Responsive image&quot;
+                preserveAspectRatio=&quot;xMidYMid slice&quot;
+                focusable=&quot;false&quot;
+              &gt;
+                &lt;title&gt;Placeholder&lt;/title&gt;
+                &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#868e96&quot;&gt;&lt;/rect&gt;
+                &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#dee2e6&quot; dy=&quot;.3em&quot;&gt;
+                  Responsive image
+                &lt;/text&gt;
+              &lt;/svg&gt;
+
+              &lt;div&gt;
+                &lt;svg
+                  class=&quot;bd-placeholder-img rounded float-start&quot;
+                  width=&quot;200&quot;
+                  height=&quot;200&quot;
+                  xmlns=&quot;http://www.w3.org/2000/svg&quot;
+                  role=&quot;img&quot;
+                  aria-label=&quot;Placeholder: 200x200&quot;
+                  preserveAspectRatio=&quot;xMidYMid slice&quot;
+                  focusable=&quot;false&quot;
+                &gt;
+                  &lt;title&gt;Placeholder&lt;/title&gt;
+                  &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#868e96&quot;&gt;&lt;/rect&gt;
+                  &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#dee2e6&quot; dy=&quot;.3em&quot;&gt;
+                    200x200
+                  &lt;/text&gt;
+                &lt;/svg&gt;
+                &lt;svg
+                  class=&quot;bd-placeholder-img rounded float-start&quot;
+                  width=&quot;200&quot;
+                  height=&quot;200&quot;
+                  xmlns=&quot;http://www.w3.org/2000/svg&quot;
+                  role=&quot;img&quot;
+                  aria-label=&quot;Placeholder: 200x200&quot;
+                  preserveAspectRatio=&quot;xMidYMid slice&quot;
+                  focusable=&quot;false&quot;
+                &gt;
+                  &lt;title&gt;Placeholder&lt;/title&gt;
+                  &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#868e96&quot;&gt;&lt;/rect&gt;
+                  &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#dee2e6&quot; dy=&quot;.3em&quot;&gt;
+                    200x200
+                  &lt;/text&gt;
+                &lt;/svg&gt;
+              &lt;/div&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-images /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

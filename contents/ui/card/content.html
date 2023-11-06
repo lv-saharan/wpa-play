@@ -1,0 +1,58 @@
+<h1>卡片</h1>
+<p>
+  卡片组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-card&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;breadcrumb&quot;,
+          &quot;utilities&quot;,
+          &quot;buttons&quot;
+        );
+
+        render() {
+          return (
+            &lt;div&gt;
+              &lt;div class=&quot;row&quot;&gt;
+                {Array.from({ length: 6 }).map(() =&gt; {
+                  return (
+                    &lt;div class=&quot;col-sm-3&quot;&gt;
+                      &lt;div class=&quot;card&quot; style=&quot;width: 18rem;&quot;&gt;
+                        &lt;img
+                          src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                          class=&quot;card-img-top&quot;
+                          alt=&quot;...&quot;
+                        /&gt;
+                        &lt;div class=&quot;card-body&quot;&gt;
+                          &lt;h5 class=&quot;card-title&quot;&gt;Card title&lt;/h5&gt;
+                          &lt;p class=&quot;card-text&quot;&gt;
+                            Some quick example text to build on the card title and
+                            make up the bulk of the card's content.
+                          &lt;/p&gt;
+                          &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Go somewhere
+                          &lt;/a&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  );
+                })}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-card /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

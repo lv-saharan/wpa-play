@@ -1,0 +1,390 @@
+<h1>对话框</h1>
+<p>
+  对话框组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-moda&quot;,
+      class extends Component {
+        static css = [
+          CSS.getCSSStyleSheets(
+            &quot;reboot&quot;,
+            &quot;forms&quot;,
+            &quot;modal&quot;,
+            &quot;buttons&quot;,
+            &quot;utilities&quot;,
+            &quot;close&quot;
+          ),
+          `
+          [slot=footer]>button{
+            margin:4px;
+          }
+        
+        `,
+        ]
+
+        render() {
+          return (
+            &lt;div&gt;
+              &lt;div class=&quot;modal position-static d-block&quot; tabindex=&quot;-1&quot;&gt;
+                &lt;div class=&quot;modal-dialog&quot;&gt;
+                  &lt;div class=&quot;modal-content&quot;&gt;
+                    &lt;div class=&quot;modal-header&quot;&gt;
+                      &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+                      &lt;button
+                        type=&quot;button&quot;
+                        class=&quot;btn-close&quot;
+                        aria-label=&quot;Close&quot;
+                      &gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;modal-body&quot;&gt;
+                      &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;modal-footer&quot;&gt;
+                      &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot;&gt;
+                        Close
+                      &lt;/button&gt;
+                      &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                        Save changes
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+    
+              &lt;wp-modal static-position&gt;
+                &lt;h5&gt;\(^o^)/~ static&lt;/h5&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;div slot=&quot;header&quot;&gt;
+                  自定義 Header
+                  &lt;button className=&quot;btn btn-primary position-absolute top-0 end-0&quot;&gt;
+                    Click ME
+                  &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+    
+              &lt;button
+                className=&quot;btn btn-primary&quot;
+                onClick={(evt) =&gt; {
+                  this.$(&quot;#m3&quot;).open();
+                }}
+              &gt;
+                顯示對話框
+              &lt;/button&gt;
+              &lt;wp-modal
+                id=&quot;m3&quot;
+                css={`
+                :host .modal{
+                  --wp-modal-margin:8em!important;
+                }
+                `}
+                title={
+                  &lt;&gt;
+                    &lt;wp-icon name=&quot;home&quot; /&gt; HOME
+                  &lt;/&gt;
+                }
+              &gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;div&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.update$Props({
+                        fullscreen: !modal.$props.fullscreen,
+                      });
+                    }}
+                  &gt;
+                    全屏
+                  &lt;/button&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.update$Props({
+                        size: &quot;sm&quot;,
+                      });
+                    }}
+                  &gt;
+                    small
+                  &lt;/button&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.update$Props({
+                        size: null,
+                      });
+                    }}
+                  &gt;
+                    default
+                  &lt;/button&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.update$Props({
+                        size: &quot;lg&quot;,
+                      });
+                    }}
+                  &gt;
+                    large
+                  &lt;/button&gt;
+                  &lt;button
+                    onClick={(evt) =&gt; {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.update$Props({
+                        size: &quot;xl&quot;,
+                      });
+                    }}
+                  &gt;
+                    xx large
+                  &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+    
+              &lt;hr /&gt;
+    
+              &lt;button
+                className=&quot;btn btn-primary&quot;
+                onClick={(evt) =&gt; {
+                  this.$(&quot;#m4&quot;).open();
+                }}
+              &gt;
+                顯示對話框 static backdrop
+              &lt;/button&gt;
+              &lt;wp-modal
+                id=&quot;m4&quot;
+                static-backdrop
+                title={
+                  &lt;&gt;
+                    &lt;wp-icon name=&quot;home&quot; /&gt; HOME
+                  &lt;/&gt;
+                }
+              &gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+    
+              &lt;hr /&gt;
+    
+              &lt;button
+                className=&quot;btn btn-primary&quot;
+                onClick={(evt) =&gt; {
+                  this.$(&quot;#m5&quot;).open();
+                }}
+              &gt;
+                顯示對話框 長內容
+              &lt;/button&gt;
+    
+              &lt;button
+                className=&quot;btn btn-primary&quot;
+                onClick={(evt) =&gt; {
+                  this.$(&quot;#m6&quot;).open();
+                }}
+              &gt;
+                顯示對話框 滾動內容
+              &lt;/button&gt;
+    
+              &lt;button
+                className=&quot;btn btn-primary&quot;
+                onClick={(evt) =&gt; {
+                  this.$(&quot;#m7&quot;).open();
+                }}
+              &gt;
+                顯示對話框 垂直居中
+              &lt;/button&gt;
+              &lt;wp-modal
+                id=&quot;m5&quot;
+                title={
+                  &lt;&gt;
+                    &lt;wp-icon name=&quot;home&quot; /&gt; 長內容
+                  &lt;/&gt;
+                }
+              &gt;
+                &lt;div style=&quot;height:1000px;&quot;&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;/div&gt;
+    
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+              &lt;wp-modal
+                id=&quot;m6&quot;
+                scrollable
+                title={
+                  &lt;&gt;
+                    &lt;wp-icon name=&quot;home&quot; /&gt; 長內容滾動
+                  &lt;/&gt;
+                }
+              &gt;
+                &lt;div style=&quot;height:1000px;&quot;&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;/div&gt;
+    
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+    
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+    
+              &lt;wp-modal
+                id=&quot;m7&quot;
+                vcentered
+                title={
+                  &lt;&gt;
+                    &lt;wp-icon name=&quot;home&quot; /&gt; 垂直居中
+                  &lt;/&gt;
+                }
+              &gt;
+                &lt;div&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                  &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+                &lt;/div&gt;
+    
+                &lt;div slot=&quot;footer&quot;&gt;
+                  &lt;button
+                    type=&quot;button&quot;
+                    class=&quot;btn btn-secondary&quot;
+                    onClick={(evt) =&gt; {
+                      //                  let modal = evt.target.closest(&quot;wp-modal&quot;);
+                      //edge 不支持
+                      let modal = evt.target.closest(&quot;wp-modal&quot;);
+                      modal.close();
+                      console.log(modal);
+                    }}
+                  &gt;
+                    Close
+                  &lt;/button&gt;
+    
+                  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                    Save changes
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/wp-modal&gt;
+            &lt;/div&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-moda /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

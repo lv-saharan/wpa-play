@@ -1,0 +1,144 @@
+<h1>input-group</h1>
+<p>
+  input-group 组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-group&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon1&quot;&gt
+                  @
+                &lt;/span&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  placeholder=&quot;Username&quot;
+                  aria-label=&quot;Username&quot;
+                  aria-describedby=&quot;basic-addon1&quot;
+                /&gt
+              &lt;/div&gt    
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  placeholder=&quot;Recipient's username&quot;
+                  aria-label=&quot;Recipient's username&quot;
+                  aria-describedby=&quot;basic-addon2&quot;
+                /&gt
+                &lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon2&quot;&gt
+                  @example.com
+                &lt;/span&gt
+              &lt;/div&gt
+    
+              &lt;label for=&quot;basic-url&quot; class=&quot;form-label&quot;&gt
+                Your vanity URL
+              &lt;/label&gt
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;span class=&quot;input-group-text&quot; id=&quot;basic-addon3&quot;&gt
+                  https://example.com/users/
+                &lt;/span&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;basic-url&quot;
+                  aria-describedby=&quot;basic-addon3&quot;
+                /&gt
+              &lt;/div&gt
+    
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;span class=&quot;input-group-text&quot;&gt$&lt;/span&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  aria-label=&quot;Amount (to the nearest dollar)&quot;
+                /&gt
+                &lt;span class=&quot;input-group-text&quot;&gt.00&lt;/span&gt
+              &lt;/div&gt
+    
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  placeholder=&quot;Username&quot;
+                  aria-label=&quot;Username&quot;
+                /&gt
+                &lt;span class=&quot;input-group-text&quot;&gt@&lt;/span&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  placeholder=&quot;Server&quot;
+                  aria-label=&quot;Server&quot;
+                /&gt
+              &lt;/div&gt
+    
+              &lt;div class=&quot;input-group&quot;&gt
+                &lt;span class=&quot;input-group-text&quot;&gtWith textarea&lt;/span&gt
+                &lt;textarea
+                  class=&quot;form-control&quot;
+                  aria-label=&quot;With textarea&quot;
+                &gt&lt;/textarea&gt
+              &lt;/div&gt
+    
+              &lt;div class=&quot;input-group mb-3&quot;&gt
+                &lt;div class=&quot;input-group-text&quot;&gt
+                  &lt;input
+                    class=&quot;form-check-input mt-0&quot;
+                    type=&quot;checkbox&quot;
+                    value=&quot;&quot;
+                    aria-label=&quot;Checkbox for following text input&quot;
+                  /&gt
+                &lt;/div&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  aria-label=&quot;Text input with checkbox&quot;
+                /&gt
+              &lt;/div&gt
+    
+              &lt;div class=&quot;input-group&quot;&gt
+                &lt;div class=&quot;input-group-text&quot;&gt
+                  &lt;input
+                    class=&quot;form-check-input mt-0&quot;
+                    type=&quot;radio&quot;
+                    value=&quot;&quot;
+                    aria-label=&quot;Radio button for following text input&quot;
+                  /&gt
+                &lt;/div&gt
+                &lt;input
+                  type=&quot;text&quot;
+                  class=&quot;form-control&quot;
+                  aria-label=&quot;Text input with radio button&quot;
+                /&gt
+              &lt;/div&gt
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-group /&gt;, &quot;body&quot;);
+  </code></pre>
+  <div class="demo">
+    <wp-group props="store.content"></wp-group>
+    <!-- <wp-table props="store.content"></wp-table> -->
+  </div>
+</section>

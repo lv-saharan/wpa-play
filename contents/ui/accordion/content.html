@@ -1,0 +1,77 @@
+<h1>手风琴</h1>
+<p>
+  手风琴组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-accord&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+            &lt;wp-tab
+              items={[
+                {
+                  pane: (
+                    &lt;&gt;
+                      &lt;wp-accordion
+                        first-open
+                        items={[
+                          {
+                            header: "Accordion #1",
+                            body: "hello,body",
+                          },
+                          {
+                            header: "Accordion #2",
+                            body: "body 2",
+                          },
+                          {
+                            header: (
+                              &lt;span&gt;
+                                &lt;wp-icon name="home" /&gt; HOME
+                              &lt;/span&gt;
+                            ),
+                            body: (item, setting, accordion) =&gt; {
+                              if (!item.__body) {
+                                setTimeout(() =&gt; {
+                                  item.__body = &lt;h1&gt;Function Callback&lt;/h1&gt;;
+                                  accordion.update();
+                                }, 10000);
+
+                                return &lt;wp-loading name="ball-fall" size=".5" /&gt;;
+                              } else {
+                                return item.__body;
+                              }
+                            },
+                          },
+                        ]}
+                      /&gt;
+                    &lt;/&gt;
+                  ),
+                }
+              ]}
+            /&gt;
+          &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-accord /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

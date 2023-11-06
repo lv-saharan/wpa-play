@@ -1,0 +1,91 @@
+<h1>表格</h1>
+<p>
+  表格组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-grid&quot;,
+      class extends Component {
+        static css = [
+          CSS.getCSSStyleSheets(
+            &quot;reboot&quot;,
+            &quot;utilities&quot;,        
+            &quot;grid&quot;
+          ),
+          `.row>div{
+            border:1px solid #ccc;
+            line-height:2.6;
+          }
+          .container{
+              margin:1rem 0;  
+          }`,
+        ]
+        render() {
+          return (
+            &lt;&gt;
+              &lt;div class=&quot;container text-center&quot;&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;Column&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;Column&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;Column&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;container text-center&quot;&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;1 of 2&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;2 of 2&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;1 of 3&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;2 of 3&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;3 of 3&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;container text-center&quot;&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;1 of 3&lt;/div&gt;
+                  &lt;div class=&quot;col-6&quot;&gt;2 of 3 (wider)&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;3 of 3&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;1 of 3&lt;/div&gt;
+                  &lt;div class=&quot;col-5&quot;&gt;2 of 3 (wider)&lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;3 of 3&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;container text-center&quot;&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                  &lt;div class=&quot;col align-self-start&quot;&gt;One of three columns&lt;/div&gt;
+                  &lt;div class=&quot;col align-self-center&quot;&gt;One of three columns&lt;/div&gt;
+                  &lt;div class=&quot;col align-self-end&quot;&gt;One of three columns&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;container px-4 text-center&quot;&gt;
+                &lt;div class=&quot;row gx-5&quot;&gt;
+                  &lt;div class=&quot;col&quot;&gt;
+                    &lt;div class=&quot;p-3 border bg-light&quot;&gt;Custom column padding&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;col&quot;&gt;
+                    &lt;div class=&quot;p-3 border bg-light&quot;&gt;Custom column padding&lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-grid /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

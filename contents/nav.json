@@ -80,8 +80,7 @@
         ]
     },
     {
-        "key": "ui",
-        "label": "UI",
+        "key": "UI",
         "folder": true,
         "children": [
             {
@@ -89,7 +88,116 @@
             },
             {
                 "key": "table"
-            }
+            },
+            {
+                "key": "check-radio"
+            },
+            {
+                "key": "range"
+            },
+            {
+                "key": "input-group"
+            },
+            {
+                "key": "floating-labels"
+            },
+            {
+                "key": "containers",
+                "label":"容器"
+            },
+            {
+                "key": "grid",
+                "label":"表格"
+            },
+            {
+                "key": "images",
+                "label":"图片"
+            },
+            {
+                "key": "tables",
+                "label":"表格"
+            },
+            {
+                "key": "accordion",
+                "label": "手風琴"
+            },
+            {
+                "key": "alert",
+                "label": "警告"
+            },
+            {
+                "key": "badge",
+                "label": "徽章"
+            },
+            {
+                "key": "breadcrumb",
+                "label": "导航"
+            },
+            {
+                "key": "card",
+                "label": "卡片"
+            },
+            {
+                "key": "carousel",
+                "label": "幻灯"
+            },
+            {
+                "key": "buttons",
+                "label": "按钮"
+            },
+            {
+                "key": "dropdowns",
+                "label": "下拉列表"
+            },
+            {
+                "key": "listGroup",
+                "label": "列表"
+            },
+            {
+                "key": "modal",
+                "label": "对话框"
+            },
+            {
+                "key": "popover",
+                "label": "彈出層"
+            },
+            {
+                "key": "tooltip",
+                "label": "提示"
+            },
+            {
+                "key": "progress",
+                "label": "进度条"
+            },
+            {
+                "key": "toast",
+                "label": "提示框"
+            },
+            {
+                "key": "scrollbar",
+                "label": "滚动条",
+                "icon": "scroll"
+            },
+            {
+                "key": "oilayout",
+                "label": "布局"
+            },
+            {
+                "key": "import",
+                "label": "导入"
+            },
+            {
+                "key": "offcanvas",
+                "label": "边栏"
+            },
+            {
+                "key": "oiform",
+                "label": "wp 表单"
+            },
+            {
+                "key": "classes",
+                "label": "自动样式"
+            } 
         ]
-    }
+    }    
 ]

@@ -1,0 +1,55 @@
+<h1>range</h1>
+<p>
+  range 组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-range&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+              &lt;label for=&quot;customRange1&quot; class=&quot;form-label&quot;&gt;
+                Example range1
+              &lt;/label&gt;
+              &lt;input type=&quot;range&quot; class=&quot;form-range&quot; id=&quot;customRange1&quot;&gt;
+
+              &lt;/input&gt;
+              &lt;label for=&quot;customRange2&quot; class=&quot;form-label&quot;&gt;
+                Example range2
+              &lt;/label&gt;
+              &lt;input
+                type=&quot;range&quot;
+                class=&quot;form-range&quot;
+                min=&quot;0&quot;
+                max=&quot;5&quot;
+                id=&quot;customRange2&quot;
+              &gt;&lt;/input&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-range /&gt;, &quot;body&quot;);
+  </code></pre>
+  <div class="demo">
+    <wp-range props="store.content"></wp-range>
+    <!-- <wp-table props="store.content"></wp-table> -->
+  </div>
+</section>

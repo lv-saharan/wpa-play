@@ -1,0 +1,230 @@
+<h1>下拉列表</h1>
+<p>
+  下拉列表组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-drop&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;utilities&quot;,
+          &quot;button-group&quot;,
+          &quot;buttons&quot;,
+          &quot;forms&quot;,
+          &quot;grid&quot;
+        );
+        css = `
+        :host{
+          display:block;
+          height:1000px;
+        }
+        .dropdown-menu{
+          margin:0;
+          padding:.5rem;
+          border:solid 1px #ccc;
+          background:white;
+        
+        }
+        .dropdown-menu li{
+          list-style:none;
+          line-height:1.5;
+        }
+        `;
+        render() {
+          return (
+            &lt;div&gt;
+              &lt;wp-dropdown
+                placement=&quot;bottom-start&quot;
+                menu={
+                  &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Action
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Another action
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;hr class=&quot;dropdown-divider&quot; /&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Something else here
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                }
+              &gt;
+                &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot;&gt;
+                  Dropdown button1
+                &lt;/button&gt;
+              &lt;/wp-dropdown&gt;
+    
+              &lt;wp-dropdown placement=&quot;bottom-start&quot;&gt;
+                &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot;&gt;
+                  Dropdown button1
+                &lt;/button&gt;
+                &lt;ul class=&quot;dropdown-menu&quot; slot=&quot;menu&quot;&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Action
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Another action
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Something else here
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/wp-dropdown&gt;
+    
+              &lt;wp-dropdown
+                placement=&quot;bottom-end&quot;
+                menu={
+                  &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Action
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Another action
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                        Something else here
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                }
+              &gt;
+                &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot;&gt;
+                  Dropdown button1
+                &lt;/button&gt;
+              &lt;/wp-dropdown&gt;
+              &lt;hr /&gt;
+              &lt;h5&gt;slot&lt;/h5&gt;
+              &lt;wp-dropdown&gt;
+                &lt;a class=&quot;btn btn-secondary dropdown-toggle&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
+                  Dropdown link
+                &lt;/a&gt;
+    
+                &lt;ul class=&quot;dropdown-menu&quot; slot=&quot;menu&quot;&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Action
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Another action
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;
+                      Something else here
+                    &lt;/a&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/wp-dropdown&gt;
+              &lt;wp-dropdown placement=&quot;right-start&quot;&gt;
+                &lt;a
+                  class=&quot;btn btn-secondary dropdown-toggle&quot;
+                  href=&quot;#&quot;
+                  role=&quot;button&quot;
+                  data-bs-toggle=&quot;dropdown&quot;
+                  aria-expanded=&quot;false&quot;
+                &gt;
+                  Dropdown link
+                &lt;/a&gt;
+    
+                &lt;form
+                  class=&quot;p-4&quot;
+                  slot=&quot;menu&quot;
+                  style=&quot;background-color:#ccc;width:200px&quot;
+                &gt;
+                  &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;label for=&quot;exampleDropdownFormEmail2&quot; class=&quot;form-label&quot;&gt;
+                      Email address
+                    &lt;/label&gt;
+                    &lt;input
+                      type=&quot;email&quot;
+                      class=&quot;form-control&quot;
+                      id=&quot;exampleDropdownFormEmail2&quot;
+                      placeholder=&quot;email@example.com&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;label for=&quot;exampleDropdownFormPassword2&quot; class=&quot;form-label&quot;&gt;
+                      Password
+                    &lt;/label&gt;
+                    &lt;input
+                      type=&quot;password&quot;
+                      class=&quot;form-control&quot;
+                      id=&quot;exampleDropdownFormPassword2&quot;
+                      placeholder=&quot;Password&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;div class=&quot;form-check&quot;&gt;
+                      &lt;input
+                        type=&quot;checkbox&quot;
+                        class=&quot;form-check-input&quot;
+                        id=&quot;dropdownCheck2&quot;
+                      /&gt;
+                      &lt;label class=&quot;form-check-label&quot; for=&quot;dropdownCheck2&quot;&gt;
+                        Remember me
+                      &lt;/label&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;button
+                    type=&quot;submit&quot;
+                    class=&quot;btn btn-primary&quot;
+                    onClick={(evt) =&gt; {
+                      evt.target.closest(&quot;wp-dropdown&quot;).hide();
+                    }}
+                  &gt;
+                    Sign in
+                  &lt;/button&gt;
+                &lt;/form&gt;
+              &lt;/wp-dropdown&gt;
+    
+              &lt;wp-dropdown&gt;
+                &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;
+                  Dropdown
+                  &lt;wp-icon name=&quot;arrow_drop_down&quot; color=&quot;white&quot; size=&quot;1.2&quot; /&gt;
+                &lt;/button&gt;
+                &lt;div
+                  slot=&quot;menu&quot;
+                  style=&quot;border:solid 1px #ccc;padding:1rem;background:black;color:white;&quot;
+                &gt;
+                  menu.....
+                &lt;/div&gt;
+              &lt;/wp-dropdown&gt;
+              &lt;hr /&gt;
+            &lt;/div&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-drop /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

@@ -1,0 +1,95 @@
+<h1>列表</h1>
+<p>
+  列表组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-slide&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;breadcrumb&quot;,
+          &quot;utilities&quot;,
+          &quot;buttons&quot;
+        );
+
+        render() {
+          return (
+            &lt;fieldset&gt;
+              &lt;legend&gt;Carousel &lt;/legend&gt;
+              &lt;pre&gt;&lt;/pre&gt;
+              &lt;wp-carousel
+                class=&quot;carousel-dark&quot;
+                style=&quot;width:20rem; outline:#00FF00 dotted thick;&quot;
+                duration=&quot;1&quot;
+                items={
+                  &lt;&gt;
+                    &lt;div&gt;
+                      &lt;img
+                        src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                        class=&quot;d-block w-100&quot;
+                        title=&quot;1&quot;
+                        alt=&quot;...1&quot;
+                      /&gt;
+                      &lt;div class=&quot;carousel-caption d-none d-md-block&quot;&gt;
+                        &lt;h5&gt;First slide label&lt;/h5&gt;
+                        &lt;p&gt;
+                          Some representative placeholder content for the first slide.
+                        &lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;img
+                      src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                      class=&quot;d-block w-100&quot;
+                      alt=&quot;...2&quot;
+                      title=&quot;2&quot;
+                    /&gt;
+                    &lt;img
+                      src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                      class=&quot;d-block w-100&quot;
+                      alt=&quot;...3&quot;
+                      title=&quot;3&quot;
+                    /&gt;
+                  &lt;/&gt;
+                }
+              &gt;&lt;/wp-carousel&gt;
+              &lt;hr /&gt;
+              &lt;wp-carousel
+                style=&quot;width:20rem; outline:#00FF00 dotted thick;&quot;
+                duration=&quot;.3&quot;
+                items={
+                  &lt;&gt;
+                    &lt;img
+                      src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                      class=&quot;d-block w-100&quot;
+                      alt=&quot;...1&quot;
+                    /&gt;
+                    &lt;img
+                      src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                      class=&quot;d-block w-100&quot;
+                      alt=&quot;...2&quot;
+                      waiting=&quot;5&quot;
+                    /&gt;
+                    &lt;img
+                      src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                      class=&quot;d-block w-100&quot;
+                      alt=&quot;...3&quot;
+                    /&gt;
+                  &lt;/&gt;
+                }
+              &gt;&lt;/wp-carousel&gt;
+            &lt;/fieldset&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-slide /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

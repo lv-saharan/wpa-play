@@ -1,0 +1,121 @@
+<h1>彈出層</h1>
+<p>
+  彈出層组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-pop&quot;,
+      class extends Component {
+        static css = [
+          CSS.getCSSStyleSheets(
+            &quot;reboot&quot;,
+            &quot;buttons&quot;
+          ),
+          `:host{
+            display:block;
+            height:200px;
+          }`
+        ]
+
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-popover
+                placement=&quot;right&quot;
+                css={`
+                  .popover {
+                    --wp-popover-bg: black;
+                  }
+
+                  .popover-body {
+                    --wp-popover-body-color: white;
+                    width: 20rem;
+                  }
+                `}
+              &gt;
+                &lt;button class=&quot;btn  btn-primary&quot;&gt;slot 一个button&lt;/button&gt;
+
+                &lt;div slot=&quot;body&quot;&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-popover&gt;
+
+              &lt;wp-popover
+                placement=&quot;right&quot;
+                header=&quot;test&quot;
+                body={
+                  &lt;p style=&quot;width:20rem;&quot;&gt;
+                    hello....，Each of these base placements has an alignment in the
+                    form -start and -end. For example, 'right-start', or
+                    'bottom-end'. These allow you to align the tooltip to the edges
+                    of the button, rather than centering it
+                  &lt;/p&gt;
+                }
+              &gt;
+                &lt;button class=&quot;btn  btn-primary&quot;&gt;slot 一个button2 &lt;/button&gt;
+              &lt;/wp-popover&gt;
+
+              &lt;hr /&gt;
+              &lt;button class=&quot;btn btn1 btn-primary&quot;&gt;show tip bottom&lt;/button&gt;
+              &lt;wp-popover
+                reference=&quot;button.btn1&quot;
+                header=&quot;tip title&quot;
+                placement=&quot;bottom-end&quot;
+                strategy=&quot;fixed&quot;
+              &gt;
+                &lt;div slot=&quot;body&quot;&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-popover&gt;
+
+              &lt;button class=&quot;btn btn3 btn-primary&quot;&gt;show tip right&lt;/button&gt;
+              &lt;wp-popover
+                reference=&quot;button.btn3&quot;
+                header=&quot;tip title&quot;
+                placement=&quot;right&quot;
+              &gt;
+                &lt;div slot=&quot;body&quot;&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-popover&gt;
+
+              &lt;button class=&quot;btn btn4 btn-primary&quot;&gt;show tip top&lt;/button&gt;
+              &lt;wp-popover
+                reference=&quot;button.btn4&quot;
+                header=&quot;tip title&quot;
+                placement=&quot;top&quot;
+              &gt;
+                &lt;div slot=&quot;body&quot;&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-popover&gt;
+              &lt;button class=&quot;btn btn2 btn-primary&quot;&gt;show tip left&lt;/button&gt;
+              &lt;wp-popover
+                reference=&quot;button.btn2&quot;
+                header=&quot;tip title&quot;
+                placement=&quot;left&quot;
+              &gt;
+                &lt;div slot=&quot;body&quot;&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-popover&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-pop /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

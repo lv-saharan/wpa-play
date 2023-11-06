@@ -1,0 +1,77 @@
+<h1>导航</h1>
+<p>
+  导航组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    const items = [
+      {
+        href: &quot;#/home&quot;,
+        label: (
+          &lt;&gt;
+            &lt;wp-icon name=&quot;home&quot;&gt;&lt;/wp-icon&gt;HOME
+          &lt;/&gt;
+        ),
+      },
+      {
+        href: &quot;#library&quot;,
+        label: (
+          &lt;&gt;
+            &lt;wp-icon name=&quot;local_library&quot; color=&quot;green&quot;&gt;&lt;/wp-icon&gt;LIBRARY
+          &lt;/&gt;
+        ),
+      },
+      {
+        label: (
+          &lt;&gt;
+            &lt;wp-icon name=&quot;data_object&quot; color=&quot;blue&quot;&gt;&lt;/wp-icon&gt;DATA
+          &lt;/&gt;
+        ),
+      },
+    ];
+    
+    define(
+      &quot;wp-bread&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;breadcrumb&quot;,
+          &quot;utilities&quot;,
+          &quot;buttons&quot;
+        );
+
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-tab
+                items={[
+                  {
+                    pane: (
+                      &lt;&gt;
+                        &lt;wp-breadcrumb items={items} /&gt;
+                        &lt;wp-breadcrumb items={items} divider=&quot;|&quot; /&gt;
+                        &lt;wp-breadcrumb items={items} divider=&quot;&gt;&quot; /&gt;
+                        &lt;wp-breadcrumb items={items} divider=&quot;~&quot; /&gt;
+                        &lt;wp-breadcrumb
+                          items={items}
+                          divider={&lt;wp-icon name=&quot;keyboard_arrow_right&quot; /&gt;}
+                        /&gt;
+                      &lt;/&gt;
+                    ),
+                  }
+                ]}
+              /&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-bread /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

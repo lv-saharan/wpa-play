@@ -1,0 +1,38 @@
+<h1>容器</h1>
+<p>
+  容器组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-containers&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;containers&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+              &lt;div class=&quot;container&quot;&gt;Content here&lt;/div&gt;
+              &lt;div class=&quot;container-sm&quot;&gt;100% wide until small breakpoint&lt;/div&gt;
+              &lt;div class=&quot;container-md&quot;&gt;100% wide until medium breakpoint&lt;/div&gt;
+              &lt;div class=&quot;container-lg&quot;&gt;100% wide until large breakpoint&lt;/div&gt;
+              &lt;div class=&quot;container-xl&quot;&gt;100% wide until extra large breakpoint&lt;/div&gt;
+              &lt;div class=&quot;container-xxl&quot;&gt;
+                100% wide until extra extra large breakpoint
+              &lt;/div&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-containers /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

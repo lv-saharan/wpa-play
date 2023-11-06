@@ -1,0 +1,81 @@
+<h1>提示</h1>
+<p>
+  提示组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-tool&quot;,
+      class extends Component {
+        static css = [
+          CSS.getCSSStyleSheets(
+            &quot;reboot&quot;,
+            &quot;buttons&quot;
+          ),
+          `:host{
+            display:block;
+            height:200px;
+          }`
+        ]
+
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-tooltip placement="right"&gt;
+                &lt;button class="btn  btn-primary"&gt;作為父組件的子組件&lt;/button&gt;
+                &lt;div slot="body"&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/div&gt;
+              &lt;/wp-tooltip&gt;
+
+              &lt;hr /&gt;
+              &lt;button class="btn btn1 btn-primary"&gt;show tip left-start&lt;/button&gt;
+              &lt;wp-tooltip
+                reference="button.btn1"
+                placement="left-start"
+                strategy="fixed"
+                body=" this is a tip And here's some amazing content. It's very engaging.
+                Right?"
+              &gt;&lt;/wp-tooltip&gt;
+              &lt;button class="btn btn2 btn-primary"&gt;show tip left&lt;/button&gt;
+              &lt;wp-tooltip
+                reference="button.btn2"
+                body={
+                  &lt;b style="color:red"&gt;
+                    this is a tip And here's some amazing content. It's very
+                    engaging. Right?
+                    空间不够时只能自动显示
+                  &lt;/b&gt;
+                }
+                placement="left"
+              &gt;&lt;/wp-tooltip&gt;
+              &lt;button class="btn btn3 btn-primary"&gt;show tip right&lt;/button&gt;
+              &lt;wp-tooltip reference="button.btn3" placement="right"&gt;
+                &lt;h1 slot="body"&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  Right?
+                &lt;/h1&gt;
+              &lt;/wp-tooltip&gt;
+
+              &lt;button class="btn btn4 btn-primary"&gt;show tip top&lt;/button&gt;
+              &lt;wp-tooltip reference="button.btn4" placement="top"&gt;
+                &lt;div slot="body"&gt;
+                  this is a tip And here's some amazing content. It's very engaging.
+                  TOP?
+                &lt;/div&gt;
+              &lt;/wp-tooltip&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-tool /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

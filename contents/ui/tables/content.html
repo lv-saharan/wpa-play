@@ -1,0 +1,122 @@
+<h1>表格</h1>
+<p>
+  表格组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-tables&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;utilities&quot;,        
+          &quot;tables&quot;
+        )
+        render() {
+          return (
+            &lt;&gt;
+              &lt;table class=&quot;table&quot;&gt;
+                &lt;thead&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;col&quot;&gt;#&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;用户编号&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;用户名称&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;用户昵称&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;部门&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;状态&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;创建时间&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;操作&lt;/th&gt;
+                  &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;row&quot;&gt;1&lt;/th&gt;
+                    &lt;td&gt;Mark&lt;/td&gt;
+                    &lt;td&gt;Otto&lt;/td&gt;
+                    &lt;td&gt;@mdo&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;row&quot;&gt;2&lt;/th&gt;
+                    &lt;td&gt;Jacob&lt;/td&gt;
+                    &lt;td&gt;Thornton&lt;/td&gt;
+                    &lt;td&gt;@fat&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;row&quot;&gt;3&lt;/th&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;Larry the Bird&lt;/td&gt;
+                    &lt;td&gt;@twitter&lt;/td&gt;
+                  &lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+              &lt;hr /&gt;
+              &lt;table class=&quot;table&quot;&gt;
+                &lt;thead&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;col&quot;&gt;Class&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;Heading&lt;/th&gt;
+                    &lt;th scope=&quot;col&quot;&gt;Heading&lt;/th&gt;
+                  &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Default&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+
+                  &lt;tr class=&quot;table-primary&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Primary&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-secondary&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Secondary&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-success&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Success&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-danger&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Danger&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-warning&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Warning&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-info&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Info&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-light&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Light&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr class=&quot;table-dark&quot;&gt;
+                    &lt;th scope=&quot;row&quot;&gt;Dark&lt;/th&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                    &lt;td&gt;Cell&lt;/td&gt;
+                  &lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-tables /&gt;, &quot;body&quot;);
+  </code></pre>
+</section>

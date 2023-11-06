@@ -1,0 +1,93 @@
+<h1>提示框</h1>
+<p>
+  提示框组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;   
+    
+    define(
+      &quot;wp-toas&quot;,
+      class extends Component {
+        static css = [
+          CSS.getCSSStyleSheets(
+            &quot;reboot&quot;,
+            &quot;popover&quot;,
+            &quot;toasts&quot;,
+            &quot;utilities&quot;,
+            &quot;transitions&quot;,
+            &quot;close&quot;
+          ),
+          `:host{
+            display:block;
+            height:200px;
+          }`
+        ]
+
+        render() {
+          return (
+            &lt;&gt;
+              &lt;wp-toast visible&gt;
+                &lt;span slot=&quot;header&quot;&gt;
+                  &lt;img
+                    src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                    class=&quot;rounded me-2&quot;
+                    style=&quot;height:3rem;&quot;
+                    alt=&quot;...&quot;
+                  /&gt;
+                  &lt;strong class=&quot;me-auto&quot;&gt;Bootstrap&lt;/strong&gt;
+                  &lt;small&gt;11 mins ago&lt;/small&gt;
+                &lt;/span&gt;
+                hello!
+              &lt;/wp-toast&gt;
+              &lt;wp-toast class=&quot;show position-fixed bottom-0 start-0 p-6&quot;&gt;
+                &lt;span slot=&quot;header&quot; className=&quot;d-flex align-items-center&quot;&gt;
+                  &lt;img
+                    src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                    class=&quot;rounded me-2&quot;
+                    style=&quot;height:3rem;&quot;
+                    alt=&quot;...&quot;
+                  /&gt;
+                  &lt;strong class=&quot;me-auto&quot;&gt;Bootstrap&lt;/strong&gt;
+                  &lt;small&gt;22 mins ago&lt;/small&gt;
+                &lt;/span&gt;
+                hello!
+              &lt;/wp-toast&gt;
+              {({ update, vnode }) =&gt; {
+                vnode.index = vnode.index ?? -1;
+                vnode.index++;
+                let $toast = [];
+                setTimeout(() =&gt; {
+                  update();
+                }, 10 * 1000);
+                for (let i = 0; i &lt; vnode.index; i++) {
+                  $toast.push(
+                    &lt;wp-toast visible key={`key-${i}`}&gt;
+                      &lt;span slot=&quot;header&quot; className=&quot;d-flex align-items-center&quot;&gt;
+                        &lt;img
+                          src=&quot;https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7&quot;
+                          class=&quot;rounded me-2&quot;
+                          style=&quot;height:3rem;&quot;
+                          alt=&quot;...&quot;
+                        /&gt;
+                        &lt;strong class=&quot;me-auto&quot;&gt;消息&lt;/strong&gt;
+                        &lt;small&gt;11 mins ago&lt;/small&gt;
+                      &lt;/span&gt;
+                      hello! 第{i + 1}次
+                    &lt;/wp-toast&gt;
+                  );
+                }
+                return &lt;div class=&quot;position-fixed bottom-0 end-0 p-3&quot;&gt;{$toast}&lt;/div&gt;;
+              }}
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-toas /&gt;, &quot;body&quot;);
+    </code></pre>
+</section>

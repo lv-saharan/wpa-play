@@ -1,0 +1,57 @@
+<h1>floating-labels</h1>
+<p>
+  floating-labels 组件
+</p>
+
+<h2>DEMO</h2>
+<h3>默认设置</h3>
+<section>
+  <pre><code class="language-javascript">
+    import { h, render, Component, define } from &quot;http://wpa.flatweb.net/wpa/latest/wpa.js&quot;;
+    import { css as CSS } from &quot;http://wpa.flatweb.net/wpa-ui/latest/wpa-ui.js&quot;;
+
+    define(
+      &quot;wp-floating&quot;,
+      class extends Component {
+        static css = CSS.getCSSStyleSheets(
+          &quot;reboot&quot;,
+          &quot;tables&quot;,
+          &quot;utilities&quot;,
+          &quot;forms&quot;,
+          &quot;buttons&quot;,
+          &quot;grid&quot;,
+          &quot;scrollbar&quot;
+        );
+        render() {
+          return (
+            &lt;&gt;
+              &lt;div class=&quot;form-floating mb-3&quot;&gt;
+                &lt;input
+                  type=&quot;email&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;floatingInput&quot;
+                  placeholder=&quot;name@example.com&quot;
+                /&gt;
+                &lt;label for=&quot;floatingInput&quot;&gt;Email address&lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;form-floating&quot;&gt;
+                &lt;input
+                  type=&quot;password&quot;
+                  class=&quot;form-control&quot;
+                  id=&quot;floatingPassword&quot;
+                  placeholder=&quot;Password&quot;
+                /&gt;
+                &lt;label for=&quot;floatingPassword&quot;&gt;Password&lt;/label&gt;
+              &lt;/div&gt;
+            &lt;/&gt;
+          );
+        }
+      }
+    );
+    render(&lt;wp-floating /&gt;, &quot;body&quot;);
+  </code></pre>
+  <div class="demo">
+    <wp-floating props="store.content"></wp-floating>
+    <!-- <wp-table props="store.content"></wp-table> -->
+  </div>
+</section>
